@@ -8,12 +8,12 @@
 
 Everything that needs to be done before coding starts.
 
-* **ERD** - Create an ERD to show the relationships between all of  your data
+* **ERD** - Completed [ Create an ERD to show the relationships between all of  your data](https://dbdiagram.io/d/67522fcbe9daa85acad4b9fe)
+* **Flowchart** - Completed [Plan out the flow of your data through the application](https://lucid.app/lucidspark/90674704-b472-42b4-aac8-10c983c43d21/edit?beaconFlowId=704ACA901A059082&invitationId=inv_a4480cf9-2d4d-48bb-adce-80089792af29&page=0_0#)
+* **Github Issue Tickets** - Completed
+* **Github Milestones** - Completed
 * **Postman Collection** - Create a postman collection to store and test out all of your API calls.
-* **[Wireframes](https://www.figma.com/file/4y3EZddALuBR3ouSEM57Np/MVP?node-id=0%3A1)** - This is the basic MVP wireframe. You can choose to style how you wish.
-* **Flowchart** - Plan out the flow of your data through the application
-* **Github Issue Tickets** - Using the Project Instructions as a guide, create issue tickets for this project’s work.
-* **Github Milestones** - Separate those issue tickets into Milestones to plan out the work.
+* **[Wireframes](https://www.figma.com/file/4y3EZddALuBR3ouSEM57Np/MVP?node-id=0%3A1)** 
 
 ## Definition of Done
 
