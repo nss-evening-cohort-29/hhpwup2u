@@ -1,10 +1,38 @@
-@import "~@fortawesome/fontawesome-free/css/all.min.css";
 @import "~bootstrap/scss/bootstrap";
 
+html, body {
+  height: 100%;
+  margin: 0;
+}
 
-body {
-  background-color: antiquewhite;
-  color: brown;
-  text-align: center;
-  margin-top: 100px;
+// Styling for background image on the login screen
+.login-screen {
+  background-image: url(../assets/images/HipHopPizzaWangzLoginBackground.jpg);
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-btn {
+  display: block;
+  height: 278px;
+  width: 315px;
+  transform: translate(-26px, -12px);
+  opacity: 0.3;
+  background-color: #cfd2c4;
+  color: black;
+  font-weight: bold;
+  font-size: 38px;
+  border: none;
+}
+
+.login-btn:hover {
+  opacity: 0.9;
+  background-color: #30b0a3;
+  color: black;
+  border: none;
 }
