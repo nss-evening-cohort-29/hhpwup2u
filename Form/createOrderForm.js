@@ -1,5 +1,5 @@
-import clearDom from "../utils/clearDom"
-import renderToDOM from "../utils/renderToDom"
+import clearDom from '../utils/clearDom';
+import renderToDOM from '../utils/renderToDom';
 
 const createOrderForm = (obj = {}) => {
   clearDom();
@@ -19,11 +19,15 @@ const createOrderForm = (obj = {}) => {
   <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
 </div>
  <div class="form-group" id="select-menu">
-      <label for="category" class="category">Category</label>
-       <select class="form-control" placeholder="Select Category" id="category" name="vocabCategory" value="${obj.orderType || ''}" required>
-       <option value="">Select Category</option>
+      <label for="orderType" class="order-type">Order Type</label>
+       <select class="form-control" placeholder="Select Order Type" id="category" name="order" value="${obj.orderType || ''}" required>
+       <option value="">Select Order Type</option>
          <option value="phone" ${obj.orderType === 'Phone' ? 'selected' : ''}>Phone</option>
-         <option value="in-person" ${obj.orderType === 'In Person'? 'selected' : ''}></option>In Person/option>
+         <option value="in-person" ${obj.orderType === 'inperson' ? 'selected' : ''}>In Person</option>
        </select>
-      </div></ul>`;
-}
+      </div>`;
+
+  renderToDOM('#form-container', domString);
+};
+
+export default createOrderForm;
