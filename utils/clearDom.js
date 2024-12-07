@@ -1,6 +1,6 @@
 /* eslint-disable */
 const clearDom = () => {
-    document.querySelector('#app').innerHTML = '';
+    document.querySelector('#main-container').innerHTML = '';
 
   };
   
