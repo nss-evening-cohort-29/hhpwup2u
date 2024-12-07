@@ -11,7 +11,7 @@ const showItems = (array) => {
       </div>
     `;
 
-    array.forEach((item) => { //TODO: NEED ORDER FINISH FIRST
+    array.forEach((item) => { // TODO: NEED ORDER FINISH FIRST
         domstring += `
             <div class="item-card-body">
               <h5 class="card-title">${item.itemName}</h5>
