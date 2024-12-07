@@ -11,13 +11,13 @@ const showItems = (array) => {
       </div>
     `;
 
-    array.forEach((item) => { // TODO: NEED ORDER FINISH FIRST
+    array.forEach((item) => { 
         domstring += `
             <div class="item-card-body">
               <h5 class="card-title">${item.itemName}</h5>
               <h5 class="card-title">${item.itemPrice}</h5>
-              <button type="button" class="btn btn-dark" id="delete-item-btn__${item.firebasekey}">Delete</button>
-              <button type="button" class="btn btn-dark" id="edit-item-btn__${item.firebasekey}">Edit</button>
+              <button type="button" class="btn btn-dark" id="delete-item-btn__${item.orderFirebaseKey}">Delete</button>
+              <button type="button" class="btn btn-dark" id="edit-item-btn__${item.orderFirebaseKey}">Edit</button>
             </div>
         `;
       });
@@ -29,7 +29,7 @@ const showItems = (array) => {
         </div>
     `;
 
-    renderToDOM('#app', domstring);
+    renderToDOM('#main-container', domstring);
 };
 
 export default showItems;
