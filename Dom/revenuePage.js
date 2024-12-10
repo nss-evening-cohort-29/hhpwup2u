@@ -52,12 +52,12 @@ const revenueBuilder = (closedOrders) => {
     let domstring = `
     <div>
         <h1> REVENUE </h1>
-        <h1> Total Revenue: ${totalRevenue} </h1>
+        <h1> Total Revenue: $${totalRevenue.toFixed(2)} </h1>
         
         <h4> Date range: TODO </h4>
-        <h4> Total tips: ${totaltips}</h4>
-        <h4> total CALL IN order: ${totalCall} </h4>
-        <h4> total WALK IN order: ${totalWalk} </h4>
+        <h4> Total tips: $${totaltips.toFixed(2)}</h4>
+        <h4> Total CALL IN orders: ${totalCall} </h4>
+        <h4> Total WALK IN orders: ${totalWalk} </h4>
         
 
         <h4> Payment Types: CASH-${typeCash} CREDIT-${typeCredit} MOBILE-${typeMobile}</h4>
