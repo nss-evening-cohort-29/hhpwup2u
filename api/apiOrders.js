@@ -1,9 +1,10 @@
 /* eslint-disable */
 import client from "../utils/client";
+import { getItem } from "./apiItems";
 
 const endpoint = client.databaseURL
 // GET Orders 
-const GetOrders = (uid) => new Promise((resolve, reject) => {
+const getOrders = (uid) => new Promise((resolve, reject) => {
     fetch(`${endpoint}/Orders.json?orderBy="uid"&equalTo="${uid}"`, {
       method: 'GET',
       headers: {
@@ -48,6 +49,17 @@ const deleteOrder = (firebaseKey) => new Promise((resolve, reject) => {
       .catch(reject);
   });
 
+// Delete order and items attached to that order
+const deleteOrderItemsRelationship = (firebaseKey) => new Promise((resolve, reject) => {
+  getItem(firebaseKey).then((orderItemsArray) => {
+    const deleteItemPromises = orderItemsArray.map((item) => deleteItemPromises(item.firebaseKey));
+
+    Promise.all(deleteItemPromises).then(() => {
+      deleteOrder(firebaseKey).then(resolve);
+    });
+  }).catch(reject);
+});
+
 // Edit Order  /////////MIGHT HAVE ISSUES 
 const editOrder = (payload) => new Promise((resolve, reject) => {
     fetch(`${endpoint}/Orders/${payload.firebaseKey}.json`, {
@@ -63,7 +75,7 @@ const editOrder = (payload) => new Promise((resolve, reject) => {
   });
 
 export {
-    GetOrders,
+    getOrders,
     createOrder,
     deleteOrder,
     editOrder,
