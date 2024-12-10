@@ -11,7 +11,7 @@ const startApp = (user) => {
     console.log("User UID:", user.uid);
     domBuilder()
     buildNavBar();
-    homeBuilder(); 
+    homeBuilder(user); 
     logoutButton();
     domEvents(user);
     navEvent(user)

@@ -5,6 +5,9 @@ html, body {
   margin: 0;
 }
 
+#main-container {
+  display: flex;
+}
 // Styling for background image on the login screen
 .login-screen {
   background-image: url(../assets/images/HipHopPizzaWangzLoginBackground.jpg);

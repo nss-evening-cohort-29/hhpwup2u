@@ -1,6 +1,8 @@
 /* eslint-disable */
-import { GetOrders } from "../api/apiOrders";
+import { getOrders } from "../api/apiOrders";
 import showOrders from "../Dom/ordersPage";
+import revenueBuilder from "../Dom/revenuePage";
+import getRevenue from "../api/apiRevenue";
 
 const navEvent = (user) => {
     document.querySelector('#NavivationRefs').addEventListener('click', (e) => {
@@ -8,9 +10,13 @@ const navEvent = (user) => {
         
         //SECTION FOR VIEW ORDER CLICK
         if (e.target.id.includes('viewOrderNav')) {
-            GetOrders(user.uid).then(showOrders);
+            getOrders(user.uid).then(showOrders);
         }
-    
+
+        if (e.target.id.includes('revenueNav')) {
+            getRevenue().then((closedOrders) => revenueBuilder(closedOrders))
+        }
+
         })
     }
 
