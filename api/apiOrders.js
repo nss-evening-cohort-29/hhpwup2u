@@ -3,7 +3,7 @@ import client from "../utils/client";
 
 const endpoint = client.databaseURL
 // GET Orders 
-const GetOrders = (uid) => new Promise((resolve, reject) => {
+const getOrders = (uid) => new Promise((resolve, reject) => {
     fetch(`${endpoint}/Orders.json?orderBy="uid"&equalTo="${uid}"`, {
       method: 'GET',
       headers: {
@@ -63,7 +63,7 @@ const editOrder = (payload) => new Promise((resolve, reject) => {
   });
 
 export {
-    GetOrders,
+    getOrders,
     createOrder,
     deleteOrder,
     editOrder,

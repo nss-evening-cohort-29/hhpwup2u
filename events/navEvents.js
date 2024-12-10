@@ -1,16 +1,20 @@
 /* eslint-disable */
-import { GetOrders } from "../api/apiOrders";
+import { getOrders } from "../api/apiOrders";
 import showOrders from "../Dom/ordersPage";
+import createOrderForm from "../Form/createOrderForm";
 
 const navEvent = (user) => {
     document.querySelector('#NavivationRefs').addEventListener('click', (e) => {
         e.preventDefault();
+
+        document.querySelector('#create-order').addEventListener('click', () => {
+            createOrderForm({});
+        })
         
         //SECTION FOR VIEW ORDER CLICK
         if (e.target.id.includes('viewOrderNav')) {
-            GetOrders(user.uid).then(showOrders);
+            getOrders(user.uid).then(showOrders);
         }
-    
         })
     }
 
