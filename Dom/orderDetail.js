@@ -2,7 +2,7 @@ import clearDom from '../utils/clearDom';
 import renderToDOM from '../utils/renderToDom';
 
 /* eslint-disable indent, no-trailing-spaces, no-multiple-empty-lines */ 
-const showItems = (array) => {
+const showItems = (array, firebaseKeyForOrder) => {
     clearDom();
     
     let totalPrice = 0;
@@ -22,15 +22,15 @@ const showItems = (array) => {
               <h5 class="card-title">${item.itemName}</h5>
               <h5 class="card-title">${item.itemPrice}</h5>
               <button type="button" class="btn btn-dark" id="delete-item-btn__${item.firebaseKey}__${item.orderFirebaseKey}">Delete</button>
-              <button type="button" class="btn btn-dark" id="edit-item-btn__${item.firebaseKey}">Edit</button>
+              <button type="button" class="btn btn-dark" id="edit-item-btn__${item.firebaseKey}__${item.orderFirebaseKey}">Edit</button>
             </div>
         `;
       });
 
     domstring += `
         <div>
-            <button type="button" class="btn btn-success" id="add-item-btn">Add Item</button>
-            <button type="button" class="btn btn-success" id="payment-order-btn">Go To Payment</button>
+            <button type="button" class="btn btn-success" id="add-item-btn--${firebaseKeyForOrder}">Add Item</button>
+            <button type="button" class="btn btn-success" id="payment-order-btn--${firebaseKeyForOrder}">Go To Payment</button>
         </div>
     `;
 

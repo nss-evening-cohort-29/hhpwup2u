@@ -19,5 +19,26 @@ const getRevenue = () => new Promise((resolve, reject) => {
       })
       .catch(reject);
   });
+  
+  // Create REVENUE
 
-  export default getRevenue;
+  const createRevenue = (payload) => new Promise ((resolve,
+    reject) => {
+      fetch(`${endpoint}/revenue.json`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      })
+      .then((response) => response.json())
+      .then((data) => resolve (data))
+      .catch(reject);
+    });
+  
+
+
+  export { 
+    getRevenue,
+    createRevenue
+  };

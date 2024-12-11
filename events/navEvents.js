@@ -2,7 +2,8 @@
 import { getOrders } from "../api/apiOrders";
 import showOrders from "../Dom/ordersPage";
 import revenueBuilder from "../Dom/revenuePage";
-import getRevenue from "../api/apiRevenue";
+import { getRevenue } from "../api/apiRevenue";
+import createOrderForm from "../Form/createOrderForm";
 
 const navEvent = (user) => {
     document.querySelector('#NavivationRefs').addEventListener('click', (e) => {

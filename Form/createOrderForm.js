@@ -22,11 +22,11 @@ const createOrderForm = (obj = {}) => {
       <label for="orderType" class="order-type">Order Type</label>
        <select class="form-control" placeholder="Select Order Type" id="order-type" name="order" value="${obj.orderType || ''}" required>
        <option value="">Select Order Type</option>
-         <option value="phone" ${obj.orderType === 'Phone' ? 'selected' : ''}>Phone</option>
-         <option value="in-person" ${obj.orderType === 'In Person' ? 'selected' : ''}>In Person</option>
+         <option value="phone" ${obj.orderType === 'phone' ? 'selected' : ''}>Phone</option>
+         <option value="in-person" ${obj.orderType === 'in-person' ? 'selected' : ''}>In Person</option>
        </select>
       </div>
-       <button type="submit" class="btn btn-primary">Create Order</button>
+       <button type="submit" class="btn btn-primary">Submit Order</button>
        </form>`;
 
   renderToDOM('#form-container', domString);
