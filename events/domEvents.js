@@ -1,37 +1,53 @@
 /* eslint-disable */
-import { deleteOrder, getOrders } from "../api/apiOrders";
+import { getOrders, deleteOrder } from "../api/apiOrders";
 import showOrders from "../Dom/ordersPage";
 import showItems from "../Dom/orderDetail";
 import { getItem } from "../api/apiItems";
-
+import { deleteItem } from "../api/apiItems";
+import revenueBuilder from "../Dom/revenuePage";
+import getRevenue from "../api/apiRevenue";
 
 const domEvents = (user) => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
     e.preventDefault();
     
-    //SECTION FOR VIEW ORDER CLICK
+    //VIEW ORDERS PAGE
     if (e.target.id.includes('view-order-btn')) {
-        getOrders(user.uid).then(showOrders);
+      getOrders(user.uid).then(showOrders);
     }
 
-    //SECTION FOR Create ITEM CLICK
+    //VIEW REVENUE PAGE
+    if (e.target.id.includes('view-revenue')) {
+      getRevenue().then((closedOrders) => revenueBuilder(closedOrders));
+    }
+
+    //VIEW ITEM DETAILS
     if (e.target.id.includes('details-order-btn')) {
         const [, firebaseKey] = e.target.id.split('__');
         getItem(firebaseKey).then((items) => showItems(items))
     }
 
-    
-    //SECTION FOR DELETE
-    if(e.target.id.includes('delete-order-btn')) {
-      if (window.confirm('Want to delete?')) {
-        const [, firebaseKey] = e.target.id.split('--');
-        deleteOrder(firebaseKey, user.uid).then(() => {
+    //DELETE ORDER
+    if (e.target.id.includes('delete-order-btn')) {
+      if (window.confirm('Are you sure you want to delete this order?')) {
+        const [, firebaseKey] = e.target.id.split('__');
+        deleteOrder(firebaseKey).then(() => {
           getOrders(user.uid).then(showOrders);
         });
       }
     }
 
-  })
+    //DELETE ITEM
+    if (e.target.id.includes('delete-item-btn')) {
+      if (window.confirm('Are you sure you want to delete this item?')) {
+        const [, firebaseKey, orderFirebaseKey] = e.target.id.split('__');
+        deleteItem(firebaseKey).then(() => {
+          getItem(orderFirebaseKey).then((items) => showItems(items));
+        });
+      }
+    }
+
+  });
 }
 
 export default domEvents;

@@ -3,7 +3,7 @@ import client from '../utils/client';
 
 const endpoint = client.databaseURL;
 
-
+// get item
 const getItem = (orderFirebaseKey) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/Items.json?orderBy="orderFirebaseKey"&equalTo="${orderFirebaseKey}"`, {
     method: 'GET',
@@ -22,6 +22,20 @@ const getItem = (orderFirebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// Delete item 
+const deleteItem = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/Items/${firebaseKey}.json`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
+// create item
 const createItem = (payload) => new Promise ((resolve,
   reject) => {
     fetch(`${endpoint}/Items.json`, {
@@ -37,4 +51,4 @@ const createItem = (payload) => new Promise ((resolve,
   });
   
 export {
-  getItem, createItem };
+  getItem, createItem, deleteItem };

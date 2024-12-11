@@ -1,5 +1,6 @@
 /* eslint-disable */
 import client from "../utils/client";
+import { getItem } from "./apiItems";
 
 const endpoint = client.databaseURL
 // GET Orders 
@@ -47,6 +48,17 @@ const deleteOrder = (firebaseKey) => new Promise((resolve, reject) => {
       .then((data) => resolve(data))
       .catch(reject);
   });
+
+// Delete order and items attached to that order
+const deleteOrderItemsRelationship = (firebaseKey) => new Promise((resolve, reject) => {
+  getItem(firebaseKey).then((orderItemsArray) => {
+    const deleteItemPromises = orderItemsArray.map((item) => deleteItemPromises(item.firebaseKey));
+
+    Promise.all(deleteItemPromises).then(() => {
+      deleteOrder(firebaseKey).then(resolve);
+    });
+  }).catch(reject);
+});
 
 // Edit Order  /////////MIGHT HAVE ISSUES 
 const editOrder = (payload) => new Promise((resolve, reject) => {

@@ -14,10 +14,10 @@ const buildNavBar = () => {
                     <a class="nav-link" href="#" id="create-order">NOWORKCreate Order</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="#" id="viewOrderNav">View Order</a>
+                    <a class="nav-link" href="#" id="viewOrderNav">View Orders</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="#">NOWORKRevenue</a>
+                    <a class="nav-link" href="#" id="revenueNav">Revenue</a>
                     </li>
                 </ul>
                 <div id="logoutNavLocation">

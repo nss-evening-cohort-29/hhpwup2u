@@ -5,9 +5,14 @@ import renderToDOM from '../utils/renderToDom';
 const showItems = (array) => {
     clearDom();
     
+    let totalPrice = 0;
+    array.forEach((item) => {
+      totalPrice += parseFloat(item.itemPrice);
+    });
+
     let domstring = `
       <div class="text-4xl font-bold text-center my-4" id="totalPrice">
-        <h1><b>Total (work in progress)</b></h1>
+        <h1><b>Total: ${totalPrice}</b></h1>
       </div>
     `;
 
@@ -16,8 +21,8 @@ const showItems = (array) => {
             <div class="item-card-body">
               <h5 class="card-title">${item.itemName}</h5>
               <h5 class="card-title">${item.itemPrice}</h5>
-              <button type="button" class="btn btn-dark" id="delete-item-btn__${item.orderFirebaseKey}">Delete</button>
-              <button type="button" class="btn btn-dark" id="edit-item-btn__${item.orderFirebaseKey}">Edit</button>
+              <button type="button" class="btn btn-dark" id="delete-item-btn__${item.firebaseKey}__${item.orderFirebaseKey}">Delete</button>
+              <button type="button" class="btn btn-dark" id="edit-item-btn__${item.firebaseKey}">Edit</button>
             </div>
         `;
       });
