@@ -3,9 +3,9 @@ import { createOrder, editOrder, getOrders } from '../api/apiOrders';
 import showOrders from '../Dom/ordersPage';
 
 const formEvents = (user) => {
-  document.querySelector('#form-container').addEventListener('click', (e) => {
+  document.querySelector('#form-container').addEventListener('submit', (e) => {
     e.preventDefault();
-    console.log("yay");
+    console.warn("yay");
 
     if (e.target.id.includes('submit-order')) {
       const payload = {
