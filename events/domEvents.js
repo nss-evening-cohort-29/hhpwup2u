@@ -21,7 +21,7 @@ const domEvents = (user) => {
       getRevenue().then((closedOrders) => revenueBuilder(closedOrders));
     }
 
-    //VIEW ORDER DETAILS
+    //VIEW ITEM DETAILS
     if (e.target.id.includes('details-order-btn')) {
         const [, firebaseKey] = e.target.id.split('__');
         getItem(firebaseKey).then((items) => showItems(items))

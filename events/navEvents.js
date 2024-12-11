@@ -7,6 +7,10 @@ import getRevenue from "../api/apiRevenue";
 const navEvent = (user) => {
     document.querySelector('#NavivationRefs').addEventListener('click', (e) => {
         e.preventDefault();
+
+        document.querySelector('#create-order').addEventListener('click', () => {
+            createOrderForm({});
+        })
         
         //SECTION FOR VIEW ORDER CLICK
         if (e.target.id.includes('viewOrderNav')) {

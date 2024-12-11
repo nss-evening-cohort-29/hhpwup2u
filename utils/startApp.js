@@ -5,6 +5,7 @@ import showItems from '../Dom/orderDetail';
 import buildNavBar from '../NavBar/NavBar.js';
 import domEvents from '../events/domEvents.js';
 import navEvent from '../events/navEvents.js';
+import formEvents from '../events/formEvents.js'
 import domBuilder from '../Dom/theWholeWebFrame.js';
 
 const startApp = (user) => {
@@ -14,7 +15,8 @@ const startApp = (user) => {
     homeBuilder(user); 
     logoutButton();
     domEvents(user);
-    navEvent(user)
+    navEvent(user);
+    formEvents(user);
     // showItems(user.uid); 
 };
   
