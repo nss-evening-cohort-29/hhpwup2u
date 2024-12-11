@@ -74,9 +74,23 @@ const editOrder = (payload) => new Promise((resolve, reject) => {
       .catch(reject);
   });
 
+  // GET SINGLE ORDER
+  const getSingleOrder = (firebaseKey) => new Promise((resolve, reject) => {
+    fetch(`${endpoint}/Orders/${firebaseKey}.json`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => resolve(data))
+      .catch(reject);
+  });
+
 export {
     getOrders,
     createOrder,
     deleteOrder,
     editOrder,
+    getSingleOrder
 }

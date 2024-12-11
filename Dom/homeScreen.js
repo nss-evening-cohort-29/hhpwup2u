@@ -6,7 +6,7 @@ const homeBuilder = (user) => {
   <div id="homeScreen">
   <h5> Welcome ${user.displayName}</h5>
     <button type="button" class="btn btn-secondary" id="view-order-btn">View Orders</button>
-    <button type="button" class="btn btn-secondary">Create Order NEED WORK</button>
+    <button type="button" class="btn btn-secondary" id="create-order-btn">Create Order</button>
     <button type="button" class="btn btn-secondary" id="view-revenue">View Revenue</button>
   </div>`;
 
