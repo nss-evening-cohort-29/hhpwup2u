@@ -35,10 +35,26 @@ const getRevenue = () => new Promise((resolve, reject) => {
       .then((data) => resolve (data))
       .catch(reject);
     });
+
+    //Edit Revenue 
+
+    const editRevenue = (payload) => new Promise((resolve, reject) => {
+      fetch(`${endpoint}/revenue/${payload.firebaseKey}.json`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      })
+        .then((response) => response.json())
+        .then(resolve)
+        .catch(reject);
+    });
   
 
 
   export { 
     getRevenue,
-    createRevenue
+    createRevenue,
+    editRevenue,
   };
