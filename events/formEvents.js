@@ -3,6 +3,9 @@ import { createOrder, editOrder, getOrders, getSingleOrder } from '../api/apiOrd
 import showOrders from '../Dom/ordersPage';
 import { editItem, getItem, createItem, } from '../api/apiItems';
 import showItems from '../Dom/orderDetail';
+import clearDom from '../utils/clearDom';
+import { createRevenue, editRevenue } from '../api/apiRevenue';
+import renderToDOM from '../utils/renderToDom';
 
 const formEvents = (user) => {
   document.querySelector('#form-container').addEventListener('submit', (e) => {
@@ -78,7 +81,15 @@ const formEvents = (user) => {
       
     // close an order TODOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
     else if (e.target.id.includes('closing-order-btn')) {
-      const [, firebaseKey] = e.target.id.split('__');
+      const [, firebaseKey, totalPrice] = e.target.id.split('__');
+
+      const payloadClose = {
+        status: "close", 
+        firebaseKey,
+      }
+
+      console.log (payloadClose)
+      editOrder(payloadClose);
 
       getSingleOrder(firebaseKey).then((order) => {
 
@@ -86,11 +97,28 @@ const formEvents = (user) => {
           orderDate: order.orderDate,
           orderName: order.orderName,
           orderType: order.orderType,
-          paymentType: "hellow world",
-          tipAmount: "Hello world",
-          totalOrderAmount: "HII World",
+          paymentType: document.querySelector('#paymentType').value,
+          tipAmount: document.querySelector('#tip-amount').value,
+          totalOrderAmount: totalPrice,
         }
-        console.log(payload)
+
+        createRevenue(payload).then(({ name }) => {
+          const patchPayload = { firebaseKey: name };
+  
+          editRevenue(patchPayload).then(() => {
+
+            clearDom();
+            const domString = `
+              <div class="card-body">
+                <h5 class="card-title">ORDER CLOSED!!</h5>
+              </div>
+            `;
+              renderToDOM('#form-container', domString);
+          });
+        });
+
+
+
     }) 
     }
 

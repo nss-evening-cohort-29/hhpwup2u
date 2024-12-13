@@ -15,37 +15,29 @@ const revenueBuilder = (closedOrders) => {
 
     let totalCall = 0
     closedOrders.forEach((item) => {
-        if (item.orderType === "call-in") {
+        if (item.orderType === "phone") {
         totalCall += 1;
         }
     });
 
     let totalWalk = 0
     closedOrders.forEach((item) => {
-        if (item.orderType === "walk-in") {
+        if (item.orderType === "in-person") {
         totalWalk += 1;
         }
     });
 
     let typeCash = 0
     closedOrders.forEach((item) => {
-        if (item.paymentType === "cash") {
+        if (item.paymentType === "Cash") {
         typeCash += 1;
         }
     });
 
     let typeCredit = 0
     closedOrders.forEach((item) => {
-      if (item.paymentType === "credit") {
+      if (item.paymentType === "Card") {
       typeCredit += 1;
-      }
-    });
-    
-
-    let typeMobile = 0
-    closedOrders.forEach((item) => {
-      if (item.paymentType === "mobile") {
-      typeMobile += 1;
       }
     });
 
@@ -60,7 +52,7 @@ const revenueBuilder = (closedOrders) => {
         <h4> Total WALK IN orders: ${totalWalk} </h4>
         
 
-        <h4> Payment Types: CASH-${typeCash} CREDIT-${typeCredit} MOBILE-${typeMobile}</h4>
+        <h4> Payment Types: CASH - ${typeCash} CARD - ${typeCredit}</h4>
 
     </div>
   `;

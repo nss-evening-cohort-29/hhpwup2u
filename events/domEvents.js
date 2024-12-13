@@ -39,8 +39,8 @@ const domEvents = (user) => {
     
     //Payment FORM
     if (e.target.id.includes('payment-order-btn')) {
-      const [, firebaseKey] = e.target.id.split('--');
-      closeOrderForm(firebaseKey)
+      const [, firebaseKey, totalPrice] = e.target.id.split('--');
+      closeOrderForm(firebaseKey, totalPrice)
     }
       
     //ADD ITEM FORM
@@ -58,8 +58,8 @@ const domEvents = (user) => {
     
     //VIEW ITEM DETAILS
     if (e.target.id.includes('details-order-btn')) {
-       const [, firebaseKey] = e.target.id.split('__');
-       getItem(firebaseKey).then((items) => showItems(items, firebaseKey))
+       const [, firebaseKey, orderStatus] = e.target.id.split('__');
+       getItem(firebaseKey).then((items) => showItems(items, firebaseKey, orderStatus))
     }
 
     //DELETE ORDER

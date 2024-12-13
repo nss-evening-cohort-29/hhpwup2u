@@ -1,16 +1,16 @@
 import clearDom from '../utils/clearDom';
 import renderToDOM from '../utils/renderToDom';
 
-const closeOrderForm = (orderFirebaseKey) => {
+const closeOrderForm = (orderFirebaseKey, totalPrice) => {
   clearDom();
   const domString = `
-<form id="closing-order-btn__${orderFirebaseKey}"
+<form id="closing-order-btn__${orderFirebaseKey}__${totalPrice}"
   <div class="form-group" id="payment-type">
       <label for="paymentType" class="order-type">Payment Type</label>
-       <select class="form-control" placeholder="Select Payment Type" id="category" name="order" required>
+       <select class="form-control" placeholder="Select Payment Type" id="paymentType" name="order" required>
        <option value="">Select Payment Type</option>
-         <option value="phone">Cash</option>
-         <option value="in-person">Card</option>
+         <option value="Cash">Cash</option>
+         <option value="Card">Card</option>
        </select>
       </div>
       <div class="mb-3">
