@@ -25,7 +25,7 @@ const showOrders = (array) => {
           <p class="card-text">${order.orderType}</p>
           <a href="#" class="card-link" id="details-order-btn__${order.firebaseKey}__${order.status}">Details</a>
           <a href="#" class="card-link" id="edit-order-btn__${order.firebaseKey}">Edit</a>
-          <a href="#" class="card-link" id="delete-order-btn__${order.firebaseKey}">Delete</a>
+          ${order.status === 'open' ? `<a href="#" class="card-link" id="delete-order-btn__${order.firebaseKey}">Delete</a>` : ''}
         </div>
       </div>`;
   });
