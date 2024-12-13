@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { getOrders, deleteOrder, getSingleOrder } from "../api/apiOrders";
+import { getOrders, deleteOrder, getSingleOrder, getAllOrders } from "../api/apiOrders";
 import showOrders from "../Dom/ordersPage";
 import showItems from "../Dom/orderDetail";
 import { getItem, getSingleItem } from "../api/apiItems";
@@ -10,13 +10,21 @@ import createOrderForm from "../Form/createOrderForm";
 import createItemForm from "../Form/createItemForm";
 import closeOrderForm from "../Form/closeOrderForm";
 
-const domEvents = (user) => {
+const domEvents = (user, admin) => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
     e.preventDefault();
     
+    //VIEW ORDERS PAGE AS ADMIN
+    if (e.target.id.includes('view-order-btn') && admin === 2) {
+      getAllOrders().then(showOrders);
+    }
+
     //VIEW ORDERS PAGE
     if (e.target.id.includes('view-order-btn')) {
-      getOrders(user.uid).then(showOrders);
+      if (admin === 2) {
+        getAllOrders().then(showOrders);
+      }
+      else (getOrders(user.uid).then(showOrders))
     }
 
     //VIEW REVENUE PAGE
