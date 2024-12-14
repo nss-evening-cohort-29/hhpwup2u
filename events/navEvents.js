@@ -7,7 +7,7 @@ import createOrderForm from "../Form/createOrderForm";
 
 
 const navEvent = (user , admin) => {
-    document.querySelector('#NavivationRefs').addEventListener('click', (e) => {
+    document.querySelector('#NavigationRefs').addEventListener('click', (e) => {
 
         e.preventDefault();
 
