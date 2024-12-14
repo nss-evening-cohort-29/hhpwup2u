@@ -79,7 +79,7 @@ const formEvents = (user) => {
       });
     }
       
-    // close an order TODOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+    // close an order
     else if (e.target.id.includes('closing-order-btn')) {
       const [, firebaseKey, totalPrice] = e.target.id.split('__');
 
