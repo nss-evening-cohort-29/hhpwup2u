@@ -23,7 +23,7 @@ const getMenuItems = () => new Promise((resolve, reject) => {
   });
 
 // get single item
-const getSingleItem = (menufirebaseKey) => new Promise((resolve, reject) => {
+const getSingleMenuItem = (menufirebaseKey) => new Promise((resolve, reject) => {
     fetch(`${endpoint}/menuItems/${menufirebaseKey}.json`, {
       method: 'GET',
       headers: {
@@ -42,7 +42,7 @@ const getSingleItem = (menufirebaseKey) => new Promise((resolve, reject) => {
   });
 
 // Delete item 
-const deleteItem = (firebaseKey) => new Promise((resolve, reject) => {
+const deleteMenuItem = (firebaseKey) => new Promise((resolve, reject) => {
     fetch(`${endpoint}/menuItems/${firebaseKey}.json`, {
       method: 'DELETE',
       headers: {
@@ -55,7 +55,7 @@ const deleteItem = (firebaseKey) => new Promise((resolve, reject) => {
   });
 
 // create item
-const createItem = (payload) => new Promise ((resolve,
+const createMenuItem = (payload) => new Promise ((resolve,
     reject) => {
       fetch(`${endpoint}/menuItems.json`, {
         method: 'POST',
@@ -70,7 +70,7 @@ const createItem = (payload) => new Promise ((resolve,
     });
 
 // edit item
-const editItem = (payload) => new Promise((resolve, reject) => {
+const editMenuItem = (payload) => new Promise((resolve, reject) => {
     fetch(`${endpoint}/menuItems/${payload.firebaseKey}.json`, {
       method: 'PATCH',
       headers: {
@@ -83,4 +83,4 @@ const editItem = (payload) => new Promise((resolve, reject) => {
       .catch(reject);
   });
 
-export default getMenuItems; 
+  export { getMenuItems, getSingleMenuItem, deleteMenuItem, createMenuItem, editMenuItem };

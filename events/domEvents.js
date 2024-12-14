@@ -9,6 +9,9 @@ import { getRevenue } from "../api/apiRevenue";
 import createOrderForm from "../Form/createOrderForm";
 import createItemForm from "../Form/createItemForm";
 import closeOrderForm from "../Form/closeOrderForm";
+import createMenuItemForm from "../Form/createMenuItemForm";
+import { deleteMenuItem, getMenuItems, getSingleMenuItem } from "../api/apiMenu";
+import showMenuItems from "../Dom/menu";
 
 const domEvents = (user) => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
@@ -22,6 +25,28 @@ const domEvents = (user) => {
     //VIEW REVENUE PAGE
     if (e.target.id.includes('view-revenue')) {
       getRevenue().then((closedOrders) => revenueBuilder(closedOrders));
+    }
+
+    //create menu item
+    if (e.target.id.includes('add-menu-btn')) {
+      createMenuItemForm({});
+    }
+
+    //edit menu item
+    if (e.target.id.includes('edit-menu-btn')) {
+      const [, firebaseKey] = e.target.id.split('--');
+
+      getSingleMenuItem(firebaseKey).then((menuObj) => createMenuItemForm(menuObj))
+    }
+
+    //delete menu item
+    if (e.target.id.includes('delete-menu-btn')) {
+      if (window.confirm('Are you sure you want to delete this item?')) {
+        const [, firebaseKey] = e.target.id.split('--');
+        deleteMenuItem(firebaseKey).then(() => {
+          getMenuItems(user.uid).then(showMenuItems);
+        });
+      }
     }
 
     // CREATE ORDER (DOM)
@@ -52,8 +77,7 @@ const domEvents = (user) => {
     //Edit ITEM FORM
     if (e.target.id.includes('edit-item-btn')) {
       const [, itemfirebaseKey, orderFirebaseKey] = e.target.id.split('__');
-      getSingleItem(itemfirebaseKey).then((itemObj) => createItemForm (itemObj, orderFirebaseKey) )
-      
+      getSingleItem(itemfirebaseKey).then((itemObj) => createItemForm (itemObj, orderFirebaseKey) )     
     }
     
     //VIEW ITEM DETAILS
