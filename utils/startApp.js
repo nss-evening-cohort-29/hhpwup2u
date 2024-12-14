@@ -8,6 +8,7 @@ import navEvent from '../events/navEvents.js';
 import formEvents from '../events/formEvents.js'
 import domBuilder from '../Dom/theWholeWebFrame.js';
 import getAdmins from '../api/apiAdmins.js';
+import { getArtistItems } from '../api/apiArtist.js';
 
 const startApp = async (user) => {
 
@@ -21,7 +22,7 @@ const startApp = async (user) => {
       console.log("User UID:", user.uid);
       domBuilder()
       buildNavBar();
-      homeBuilder(user); 
+      getArtistItems().then ((artist) => homeBuilder(user, artist)) 
       logoutButton();
       domEvents(user, 2);
       navEvent(user, 2);
@@ -34,7 +35,7 @@ const startApp = async (user) => {
       console.log("User UID:", user.uid);
       domBuilder()
       buildNavBar();
-      homeBuilder(user); 
+      getArtistItems().then ((artist) => homeBuilder(user, artist)) ; 
       logoutButton();
       domEvents(user);
       navEvent(user);

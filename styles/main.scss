@@ -42,5 +42,15 @@ html, body {
 
 .d-block {
   width: 600px;
-  height: auto;
+}
+
+.carousel-inner {
+  height: 700px; 
+}
+.carousel-item {
+  height: 100%; 
+}
+.carousel-item img {
+  height: 100%; 
+  width: 70%; 
 }

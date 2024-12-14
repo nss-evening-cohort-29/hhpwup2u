@@ -7,6 +7,8 @@ import createOrderForm from "../Form/createOrderForm";
 import  showItems  from "../Dom/menu";
 import { getMenuItems } from "../api/apiMenu";
 import showMenuItems from "../Dom/menu";
+import homeBuilder from "../Dom/homeScreen";
+import { getArtistItems } from "../api/apiArtist";
 
 
 const navEvent = (user , admin) => {
@@ -38,9 +40,15 @@ const navEvent = (user , admin) => {
             
         }
 
+        // MENU SECTION
         if (e.target.id.includes('menu')) {
-            console.log("trigger")
             getMenuItems().then((item) => showMenuItems(item))
+        }
+
+        
+        // MENU SECTION
+        if (e.target.id.includes('homeNav')) {
+            getArtistItems().then ((artist) => homeBuilder(user, artist)) 
         }
 
         })

@@ -1,39 +1,57 @@
 import renderToDOM from '../utils/renderToDom';
+import clearDom from '../utils/clearDom';
 
-/* eslint-disable indent, no-trailing-spaces, no-multiple-empty-lines */
-const homeBuilder = (user) => {
-  const domString = `
+/* eslint-disable */
+const homeBuilder = (user, artists) => {
+
+  clearDom();
+  let domString = `
   <div id="homeScreen">
-  <h5> Welcome ${user.displayName}</h5>
+    <h5> Welcome ${user.displayName}</h5>
     <div id="carouselExampleIndicators" class="carousel slide">
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+
+      <div class="carousel-indicators">`;
+
+  artists.forEach((artist, index) => {
+    domString += `<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${index}" class="${index === 0 ? 'active' : ''}" aria-label="Slide ${index + 1}"></button>`;
+  });
+
+  domString += `</div>
+
+      <div class="carousel-inner">`;
+
+  artists.forEach((artist, index) => {
+    domString += `
+      <div class="carousel-item ${index === 0 ? 'active' : ''}">
+        <img src="${artist.artistImage}" class="d-block w-100" alt="image of artist">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>${artist.artistName}</h5>
+          <p>${artist.artistDescription}</p>
+          <p>${artist.performanceDate}</p>
+          <p>${artist.location}</p>
+        </div>
       </div>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="https://tse3.mm.bing.net/th?id=OIF.QU2eZGR3AJzvEDkfcLQMdw&pid=Api&P=0&h=220" class="d-block" alt="...">
-        </div>
-        <div class="carousel-item">
-          <img src="https://iconichipster.com/wp-content/uploads/2024/12/taylorswift.webp" class="d-block" alt="...">
-        </div>
-        <div class="carousel-item">
-          <img src="https://d.newsweek.com/en/full/2534899/taylor-swift-first-concert-after-breakup.jpg" class="d-block" alt="...">
-        </div>
+      `;
+  });
+
+  domString += `
       </div>
+
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </button>
+
       <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
+
     </div>
   </div>`;
 
   renderToDOM('#main-container', domString);
 };
+
 
 export default homeBuilder;
