@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { getOrders } from "../api/apiOrders";
+import { getOrders, getAllOrders } from "../api/apiOrders";
 import showOrders from "../Dom/ordersPage";
 import revenueBuilder from "../Dom/revenuePage";
 import { getRevenue } from "../api/apiRevenue";
@@ -8,8 +8,10 @@ import  showItems  from "../Dom/menu";
 import { getMenuItems } from "../api/apiMenu";
 import showMenuItems from "../Dom/menu";
 
-const navEvent = (user) => {
-    document.querySelector('#NavivationRefs').addEventListener('click', (e) => {
+
+const navEvent = (user , admin) => {
+    document.querySelector('#NavigationRefs').addEventListener('click', (e) => {
+
         e.preventDefault();
 
         document.querySelector('#create-order').addEventListener('click', () => {
@@ -18,9 +20,12 @@ const navEvent = (user) => {
         
         //SECTION FOR VIEW ORDER CLICK
         if (e.target.id.includes('viewOrderNav')) {
-            getOrders(user.uid).then(showOrders);
+            if (admin === 2) {
+                getAllOrders().then(showOrders);
+                }
+            else (getOrders(user.uid).then(showOrders))
         }
-
+        //SECTION FOR VIEW REVENUE
         if (e.target.id.includes('revenueNav')) {
             getRevenue().then((closedOrders) => revenueBuilder(closedOrders))
         }

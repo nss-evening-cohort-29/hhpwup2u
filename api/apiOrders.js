@@ -3,6 +3,26 @@ import client from "../utils/client";
 import { getItem } from "./apiItems";
 
 const endpoint = client.databaseURL
+
+// GET ALL Orders ADMIN ONLY
+const getAllOrders = () => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/Orders.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'applications/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    })
+    .catch(reject);
+});
+
 // GET Orders 
 const getOrders = (uid) => new Promise((resolve, reject) => {
     fetch(`${endpoint}/Orders.json?orderBy="uid"&equalTo="${uid}"`, {
@@ -92,5 +112,6 @@ export {
     createOrder,
     deleteOrder,
     editOrder,
-    getSingleOrder
+    getSingleOrder,
+    getAllOrders,
 }
