@@ -28,7 +28,7 @@
     "webpack-dev-server": "^4.1.0"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "5.14.0",
+    "@fortawesome/fontawesome-free": "^5.14.0",
     "@popperjs/core": "^2.9.3",
     "bootstrap": "^5.1.0",
     "dotenv": "^10.0.0",

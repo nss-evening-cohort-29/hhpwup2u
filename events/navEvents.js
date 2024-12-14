@@ -5,8 +5,10 @@ import revenueBuilder from "../Dom/revenuePage";
 import { getRevenue } from "../api/apiRevenue";
 import createOrderForm from "../Form/createOrderForm";
 
+
 const navEvent = (user , admin) => {
     document.querySelector('#NavivationRefs').addEventListener('click', (e) => {
+
         e.preventDefault();
 
         document.querySelector('#create-order').addEventListener('click', () => {
