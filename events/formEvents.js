@@ -100,6 +100,7 @@ const formEvents = (user) => {
           paymentType: document.querySelector('#paymentType').value,
           tipAmount: document.querySelector('#tip-amount').value,
           totalOrderAmount: totalPrice,
+          timeClosed: Date.now()
         }
 
         createRevenue(payload).then(({ name }) => {
