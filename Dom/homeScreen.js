@@ -6,6 +6,11 @@ const homeBuilder = (user, artists) => {
 
   clearDom();
   let domString = `
+
+  <div> 
+  <button type="button" class="btn btn-outline-info" id="book-new-artist"">Book New Artist</button>
+  </div>
+
   <div id="homeScreen">
     <h5> Welcome ${user.displayName}</h5>
     <div id="carouselExampleIndicators" class="carousel slide">

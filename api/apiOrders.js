@@ -107,6 +107,25 @@ const editOrder = (payload) => new Promise((resolve, reject) => {
       .catch(reject);
   });
 
+  // GET Open Orders
+const getOpenOrders = () => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/Orders.json?orderBy="status"&equalTo="open"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'applications/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    })
+    .catch(reject);
+});
+
 export {
     getOrders,
     createOrder,
@@ -114,4 +133,5 @@ export {
     editOrder,
     getSingleOrder,
     getAllOrders,
+    getOpenOrders,
 }

@@ -42,7 +42,7 @@ const navEvent = (user , admin) => {
 
         // MENU SECTION
         if (e.target.id.includes('menu')) {
-            getMenuItems().then((item) => showMenuItems(item))
+            getMenuItems().then((item) => showMenuItems(item, admin))
         }
 
         

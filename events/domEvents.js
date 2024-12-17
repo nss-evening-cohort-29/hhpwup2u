@@ -1,27 +1,21 @@
 /* eslint-disable */
-import { getOrders, deleteOrder, getSingleOrder, getAllOrders } from "../api/apiOrders";
+import { getOrders, deleteOrder, getSingleOrder, getAllOrders, getOpenOrders } from "../api/apiOrders";
 import showOrders from "../Dom/ordersPage";
 import showItems from "../Dom/orderDetail";
 import { getItem, getSingleItem } from "../api/apiItems";
-import { deleteItem } from "../api/apiItems";
+import { deleteItem, createItem, editItem } from "../api/apiItems";
 import revenueBuilder from "../Dom/revenuePage";
 import { getRevenue } from "../api/apiRevenue";
 import createOrderForm from "../Form/createOrderForm";
 import createItemForm from "../Form/createItemForm";
 import closeOrderForm from "../Form/closeOrderForm";
-import createMenuItemForm from "../Form/createMenuItemForm";
-import { deleteMenuItem, getMenuItems, getSingleMenuItem } from "../api/apiMenu";
-import showMenuItems from "../Dom/menu";
+import showOpenItemForMenu from "../Dom/menuOrderPage";
+import { getSingleMenuItem } from "../api/apiMenu";
 
 const domEvents = (user, admin) => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
     e.preventDefault();
     
-    //VIEW ORDERS PAGE AS ADMIN
-    if (e.target.id.includes('view-order-btn') && admin === 2) {
-      getAllOrders().then(showOrders);
-    }
-
     //VIEW ORDERS PAGE
     if (e.target.id.includes('view-order-btn')) {
       if (admin === 2) {
@@ -33,28 +27,6 @@ const domEvents = (user, admin) => {
     //VIEW REVENUE PAGE
     if (e.target.id.includes('view-revenue')) {
       getRevenue().then((closedOrders) => revenueBuilder(closedOrders));
-    }
-
-    //create menu item
-    if (e.target.id.includes('add-menu-btn')) {
-      createMenuItemForm({});
-    }
-
-    //edit menu item
-    if (e.target.id.includes('edit-menu-btn')) {
-      const [, firebaseKey] = e.target.id.split('--');
-
-      getSingleMenuItem(firebaseKey).then((menuObj) => createMenuItemForm(menuObj))
-    }
-
-    //delete menu item
-    if (e.target.id.includes('delete-menu-btn')) {
-      if (window.confirm('Are you sure you want to delete this item?')) {
-        const [, firebaseKey] = e.target.id.split('--');
-        deleteMenuItem(firebaseKey).then(() => {
-          getMenuItems(user.uid).then(showMenuItems);
-        });
-      }
     }
 
     // CREATE ORDER (DOM)
@@ -85,7 +57,8 @@ const domEvents = (user, admin) => {
     //Edit ITEM FORM
     if (e.target.id.includes('edit-item-btn')) {
       const [, itemfirebaseKey, orderFirebaseKey] = e.target.id.split('__');
-      getSingleItem(itemfirebaseKey).then((itemObj) => createItemForm (itemObj, orderFirebaseKey) )     
+      getSingleItem(itemfirebaseKey).then((itemObj) => createItemForm (itemObj, orderFirebaseKey) )
+      
     }
     
     //VIEW ITEM DETAILS
@@ -97,10 +70,18 @@ const domEvents = (user, admin) => {
     //DELETE ORDER
     if (e.target.id.includes('delete-order-btn')) {
       if (window.confirm('Are you sure you want to delete this order?')) {
-        const [, firebaseKey] = e.target.id.split('__');
-        deleteOrder(firebaseKey).then(() => {
-          getOrders(user.uid).then(showOrders);
-        });
+        if (admin === 2) {
+          const [, firebaseKey] = e.target.id.split('__');
+          deleteOrder(firebaseKey).then(() => {
+            getAllOrders().then(showOrders);
+          });
+        }
+        else {
+          const [, firebaseKey] = e.target.id.split('__');
+          deleteOrder(firebaseKey).then(() => {
+            getOrders(user.uid).then(showOrders);
+          });
+        }
       }
     }
 
@@ -120,6 +101,52 @@ const domEvents = (user, admin) => {
         });
       }
     }
+
+    if (e.target.id.includes('Order-menu-btn')) {
+      const [, MenuItemKey] = e.target.id.split('--');
+        if (admin === 2) {
+          getOpenOrders().then((order) => showOpenItemForMenu(order,MenuItemKey))
+        }
+        else {
+          getOpenOrders().then((orders) => { 
+            let UidItems = [];
+            orders.forEach(order => {
+              if (order.uid === user.uid) {
+                UidItems.push(order);
+              }
+            });
+
+            showOpenItemForMenu(UidItems,MenuItemKey);
+        });
+        }
+
+
+    }
+
+    // FOR ADDING ITEM FROM MENU ORDER
+    if (e.target.id.includes('from-menu-add-order-btn')) {
+
+      const [, firebaseKeyFromOrders, firebaseKeyForMenuItem] = e.target.id.split('__');
+
+      getSingleMenuItem(firebaseKeyForMenuItem).then((item) => {
+        const payload = {
+          itemName: item.menuItemName,
+          itemPrice: item.menuItemPrice,
+          orderFirebaseKey: firebaseKeyFromOrders,
+        };
+
+        createItem(payload).then(({ name }) => {
+          const patchPayload = { firebaseKey: name };
+          editItem(patchPayload).then(() =>
+            getItem(firebaseKeyFromOrders).then((item) =>
+              showItems(item, firebaseKeyFromOrders)
+            )
+          );
+        });
+
+      })
+    }
+
 
   });
 }

@@ -22,11 +22,11 @@ const startApp = async (user) => {
       console.log("User UID:", user.uid);
       domBuilder()
       buildNavBar();
-      getArtistItems().then ((artist) => homeBuilder(user, artist)) 
+      getArtistItems().then ((artist) => homeBuilder(user, artist));
       logoutButton();
       domEvents(user, 2);
       navEvent(user, 2);
-      formEvents(user);
+      formEvents(user, 2);
     }
     
     

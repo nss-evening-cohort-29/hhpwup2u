@@ -30,7 +30,7 @@ const showItems = (array, firebaseKeyForOrder, orderStatus) => {
     domstring += `
         <div>
         ${orderStatus === 'close' ? '<span class="badge text-bg-danger">CLOSERD ORDER</span>' 
-          : `<button type="button" class="btn btn-success" id="add-item-btn--${firebaseKeyForOrder}">Add Item</button>
+          : `<button type="button" class="btn btn-success" id="add-item-btn--${firebaseKeyForOrder}">Add Custom Item</button>
           <button type="button" class="btn btn-success" id="payment-order-btn--${firebaseKeyForOrder}--${totalPrice}">Go To Payment</button>`
         }
         </div>
