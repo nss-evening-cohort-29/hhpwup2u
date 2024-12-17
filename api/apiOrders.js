@@ -110,6 +110,20 @@ const editOrder = (payload) => new Promise((resolve, reject) => {
   });
 
   // FILTER ORDER STATUS
+  const getOpen = (uid) => new Promise((resolve, reject) => {
+    fetch(`${endpoint}/Orders.json?orderBy="uid"&equalTo="${uid}"`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+          const open = Object.values
+      resolve(open);
+      })
+      .catch(reject);
+  });
 
   const getClosed = (uid) => new Promise((resolve, reject) => {
     fetch(`${endpoint}/Orders.json?orderBy="uid"&equalTo="${uid}"`, {
@@ -128,32 +142,16 @@ const editOrder = (payload) => new Promise((resolve, reject) => {
 
     // SEARCH ORDER BY NAME, PHONE, & ORDER STATUS
 
-    const searchOrders = (user, admin) => {
-
-      if ( admin === 2) {
-        const searchValue = document.querySelector('#search').value.toLowerCase();
-        getAllOrders().then((orders) => {
-          const orderValue = orders.filter((order) =>
-            order.customerPhone.toLowerCase().includes(searchValue) ||
-            order.orderName.toLowerCase().includes(searchValue)
-          );
-            showOrders(orderValue);
-        });
-      }
-
-      else {
-        const searchValue = document.querySelector('#search').value.toLowerCase();
-        getOrders(user.uid).then((orders) => {
-          const orderValue = orders.filter((order) =>
-            order.customerPhone.toLowerCase().includes(searchValue) ||
-            order.orderName.toLowerCase().includes(searchValue)
-          );
-            showOrders(orderValue);
-        });
-      }
-
+    const searchOrders = (user) => {
+      const searchValue = document.querySelector('#search').value.toLowerCase();
+      getOrders(user.uid).then((orders) => {
+        const orderValue = orders.filter((order) =>
+          order.customerPhone.toLowerCase().includes(searchValue) ||
+          order.orderName.toLowerCase().includes(searchValue)
+        );
+          showOrders(orderValue);
+      });
     };
-
 
 export {
     getOrders,
@@ -161,9 +159,9 @@ export {
     deleteOrder,
     editOrder,
     getSingleOrder,
+    getOpen,
     getClosed,
     getAllOrders,
     deleteOrderItemsRelationship,
     searchOrders
-
 }

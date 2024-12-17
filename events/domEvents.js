@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import { getOrders, deleteOrder, getSingleOrder, getAllOrders, searchOrders, getClosed } from "../api/apiOrders";
+import { getOrders, deleteOrder, getSingleOrder, getAllOrders, searchOrders, getOpen, getClosed } from "../api/apiOrders";
 
 import showOrders from "../Dom/ordersPage";
 import showItems from "../Dom/orderDetail";
@@ -179,16 +179,16 @@ const domEvents = (user, admin) => {
         }
         )
       }
-    } 
+    }
 
   }
     if (e.target.id.includes('Order-menu-btn')) {
       const [, MenuItemKey] = e.target.id.split('--');
         if (admin === 2) {
-          getOpenOrders().then((order) => showOpenItemForMenu(order,MenuItemKey))
+          getOpen().then((order) => showOpenItemForMenu(order,MenuItemKey))
         }
         else {
-          getOpenOrders().then((orders) => { 
+          getOpen().then((orders) => {
             let UidItems = [];
             orders.forEach(order => {
               if (order.uid === user.uid) {
@@ -213,7 +213,7 @@ const domEvents = (user, admin) => {
       const [, firebaseKey] = e.target.id.split('--');
       getSingleMenuItem(firebaseKey).then((menuObj) => createMenuItemForm(menuObj))
     }
-    
+
     // DELETE MENU ITEM FORM
     if (e.target.id.includes('delete-menu-btn')) {
       const [, firebaseKey] = e.target.id.split('--');
@@ -249,7 +249,7 @@ const domEvents = (user, admin) => {
     //Delete an artist
     if (e.target.id.includes('delete-new-artist')) {
       const [, firebaseKey] = e.target.id.split('--');
-      deleteArtistItem(firebaseKey).then(() => 
+      deleteArtistItem(firebaseKey).then(() =>
         getArtistItems().then ((artist) => homeBuilder(user, artist, admin))
     )
 
