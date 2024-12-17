@@ -110,20 +110,6 @@ const editOrder = (payload) => new Promise((resolve, reject) => {
   });
 
   // FILTER ORDER STATUS
-  const getOpen = (uid) => new Promise((resolve, reject) => {
-    fetch(`${endpoint}/Orders.json?orderBy="uid"&equalTo="${uid}"`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-          const open = Object.values(data).filter((statObj) => statObj.status === 'open');
-      resolve(open);
-      })
-      .catch(reject);
-  });
 
   const getClosed = (uid) => new Promise((resolve, reject) => {
     fetch(`${endpoint}/Orders.json?orderBy="uid"&equalTo="${uid}"`, {
@@ -134,7 +120,7 @@ const editOrder = (payload) => new Promise((resolve, reject) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        const closed = Object.values(data).filter((statObj) => statObj.status === 'closed');
+        const closed = Object.values(data)
         resolve(closed);
       })
       .catch(reject);
@@ -159,7 +145,6 @@ export {
     deleteOrder,
     editOrder,
     getSingleOrder,
-    getOpen,
     getClosed,
     getAllOrders,
     deleteOrderItemsRelationship,

@@ -22,6 +22,7 @@ const showOrders = (array) => {
         <option value="open">Open</option>
         <option value="closed">Closed</option>
       </select>
+      <button id="search-btn" class="btn btn-primary">Search</button>
     </div>
   </div>`
 

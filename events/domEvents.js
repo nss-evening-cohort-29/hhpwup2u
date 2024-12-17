@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { getOrders, deleteOrder, getSingleOrder, getAllOrders, searchOrders, getOpen, getClosed } from "../api/apiOrders";
+import { getOrders, deleteOrder, getSingleOrder, getAllOrders, searchOrders, getClosed } from "../api/apiOrders";
 import showOrders from "../Dom/ordersPage";
 import showItems from "../Dom/orderDetail";
 import { getItem, getSingleItem } from "../api/apiItems";
@@ -105,13 +105,34 @@ const domEvents = (user, admin) => {
 
   // FILTER ORDER STATUS
   if (e.target.id.includes('order-status')) {
-    console.warn("closed")
+
     if (document.querySelector('#order-status').value === 'open'){
-  console.warn("open")
-      getOpen(user.uid).then((orders) => showOrders(orders))
+      console.warn("open")
+      getClosed(user.uid).then((orders) => {
+        let closedArray = []
+      orders.forEach(element => {
+       if (element.status === 'open') {
+        closedArray.push(element)
+       }
+        })
+        console.log(closedArray)
+        showOrders(closedArray)
+      }
+      )
     }
   if (document.querySelector ('#order-status').value === 'closed'){
-      getClosed(user.uid).then((orders) => showOrders(orders))
+    console.warn("closed")
+      getClosed(user.uid).then((orders) => {
+        let closedArray = []
+      orders.forEach(element => {
+       if (element.status === 'closed') {
+        closedArray.push(element)
+       }
+        })
+        console.log(closedArray)
+        showOrders(closedArray)
+      }
+      )
 }
   }
   });
