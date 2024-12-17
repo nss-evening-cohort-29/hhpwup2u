@@ -116,9 +116,9 @@ const dateSearch = async (array, startSearch, endSearch) => {
   // Second part of the DOM renders with revenue calculations
   let newdomstring = `<h1> Total Revenue: ${moneyFormat(totalRevenue)} </h1>
   <h4>Total orders: ${totalOrders}</h4>
-  <h4>Average Revenue Per Order: ${moneyFormat(totalRevenue / totalOrders)}</h4>
+  <h4>Average Revenue Per Order: ${totalRevenue === 0 ? moneyFormat(0): moneyFormat(totalRevenue / totalOrders)}</h4>
   <h4> Total tips: ${moneyFormat(totaltips)}</h4>
-  <h4>Average Tip Per Order: ${moneyFormat(totaltips / totalOrders)}</h4>
+  <h4>Average Tip Per Order: ${totaltips === 0 ? moneyFormat(0): moneyFormat(totaltips / totalOrders)}</h4>
   <h4>View revenue by type:</h4>
   <button type="button" class="btn btn-dark" id="cash-vs-card">Payment Type</button>
   <button type="button" class="btn btn-dark" id="call-vs-walk">Order Type</button>
