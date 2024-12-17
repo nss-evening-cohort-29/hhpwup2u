@@ -13,10 +13,18 @@ import showOpenItemForMenu from "../Dom/menuOrderPage";
 import { getSingleMenuItem, getMenuItems, deleteMenuItem } from "../api/apiMenu";
 import showMenuItems from "../Dom/menu";
 import createMenuItemForm from "../Form/createMenuItemForm";
+import { deleteArtistItem, getArtistItems } from "../api/apiArtist";
+import BookArtistForm from "../Form/createArtistForm";
+import homeBuilder from "../Dom/homeScreen";
 
 const domEvents = (user, admin) => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
     e.preventDefault();
+
+    //Searching ORders
+    if (e.target.id.includes('SearchBox')) {
+      {searchOrders(user, admin)}
+    }
 
     //VIEW ORDERS PAGE AS ADMIN
     if (e.target.id.includes('view-order-btn') && admin === 2) {
@@ -113,44 +121,66 @@ const domEvents = (user, admin) => {
       }
     }
 
-
-    // SEARCH ORDER VALUES
-    document.querySelector('#search').addEventListener('keyup', () => {
-    searchOrders(user);
-
-    });
-
   // FILTER ORDER STATUS
   if (e.target.id.includes('order-status')) {
 
-    if (document.querySelector('#order-status').value === 'open'){
-      console.warn("open")
-      getClosed(user.uid).then((orders) => {
-        let closedArray = []
-      orders.forEach(element => {
-       if (element.status === 'open') {
-        closedArray.push(element)
-       }
-        })
-        console.log(closedArray)
-        showOrders(closedArray)
+    if (admin === 2) {
+      if (document.querySelector('#order-status').value === 'open'){
+        getAllOrders().then((orders) => {
+          let closedArray = []
+        orders.forEach(element => {
+        if (element.status === 'open') {
+          closedArray.push(element)
+        }
+          })
+          console.log(closedArray)
+          showOrders(closedArray)
+        }
+        )
       }
-      )
+      if (document.querySelector ('#order-status').value === 'closed'){
+        getAllOrders().then((orders) => {
+          let closedArray = []
+        orders.forEach(element => {
+        if (element.status === 'close') {
+          closedArray.push(element)
+        }
+          })
+          console.log(closedArray)
+          showOrders(closedArray)
+        }
+        )
+      }
     }
-  if (document.querySelector ('#order-status').value === 'closed'){
-    console.warn("closed")
-      getClosed(user.uid).then((orders) => {
-        let closedArray = []
-      orders.forEach(element => {
-       if (element.status === 'closed') {
-        closedArray.push(element)
-       }
-        })
-        console.log(closedArray)
-        showOrders(closedArray)
+    else {
+      if (document.querySelector('#order-status').value === 'open'){
+        getClosed(user.uid).then((orders) => {
+          let closedArray = []
+        orders.forEach(element => {
+        if (element.status === 'open') {
+          closedArray.push(element)
+        }
+          })
+          console.log(closedArray)
+          showOrders(closedArray)
+        }
+        )
       }
-      )
-}
+      if (document.querySelector ('#order-status').value === 'closed'){
+        getClosed(user.uid).then((orders) => {
+          let closedArray = []
+        orders.forEach(element => {
+        if (element.status === 'close') {
+          closedArray.push(element)
+        }
+          })
+          console.log(closedArray)
+          showOrders(closedArray)
+        }
+        )
+      }
+    } 
+
   }
     if (e.target.id.includes('Order-menu-btn')) {
       const [, MenuItemKey] = e.target.id.split('--');
@@ -215,7 +245,21 @@ const domEvents = (user, admin) => {
 
       })
     }
-    
+
+    //Delete an artist
+    if (e.target.id.includes('delete-new-artist')) {
+      const [, firebaseKey] = e.target.id.split('--');
+      deleteArtistItem(firebaseKey).then(() => 
+        getArtistItems().then ((artist) => homeBuilder(user, artist, admin))
+    )
+
+    }
+
+    if (e.target.id.includes('book-new-artist')) {
+      BookArtistForm();
+    }
+
+
   });
 }
 

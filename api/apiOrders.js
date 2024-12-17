@@ -128,15 +128,30 @@ const editOrder = (payload) => new Promise((resolve, reject) => {
 
     // SEARCH ORDER BY NAME, PHONE, & ORDER STATUS
 
-    const searchOrders = (user) => {
-      const searchValue = document.querySelector('#search').value.toLowerCase();
-      getOrders(user.uid).then((orders) => {
-        const orderValue = orders.filter((order) =>
-          order.customerPhone.toLowerCase().includes(searchValue) ||
-          order.orderName.toLowerCase().includes(searchValue)
-        );
-          showOrders(orderValue);
-      });
+    const searchOrders = (user, admin) => {
+
+      if ( admin === 2) {
+        const searchValue = document.querySelector('#search').value.toLowerCase();
+        getAllOrders().then((orders) => {
+          const orderValue = orders.filter((order) =>
+            order.customerPhone.toLowerCase().includes(searchValue) ||
+            order.orderName.toLowerCase().includes(searchValue)
+          );
+            showOrders(orderValue);
+        });
+      }
+
+      else {
+        const searchValue = document.querySelector('#search').value.toLowerCase();
+        getOrders(user.uid).then((orders) => {
+          const orderValue = orders.filter((order) =>
+            order.customerPhone.toLowerCase().includes(searchValue) ||
+            order.orderName.toLowerCase().includes(searchValue)
+          );
+            showOrders(orderValue);
+        });
+      }
+
     };
 
 
