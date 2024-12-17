@@ -4,6 +4,9 @@ import showOrders from "../Dom/ordersPage";
 import revenueBuilder from "../Dom/revenuePage";
 import { getRevenue } from "../api/apiRevenue";
 import createOrderForm from "../Form/createOrderForm";
+import  showItems  from "../Dom/menu";
+import { getMenuItems } from "../api/apiMenu";
+import showMenuItems from "../Dom/menu";
 
 
 const navEvent = (user , admin) => {
@@ -25,6 +28,11 @@ const navEvent = (user , admin) => {
         //SECTION FOR VIEW REVENUE
         if (e.target.id.includes('revenueNav')) {
             getRevenue().then((closedOrders) => revenueBuilder(closedOrders))
+        }
+
+        if (e.target.id.includes('menu')) {
+            console.log("trigger")
+            getMenuItems().then((item) => showMenuItems(item))
         }
 
         })

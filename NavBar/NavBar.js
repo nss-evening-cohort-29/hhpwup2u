@@ -19,6 +19,9 @@ const buildNavBar = () => {
                     <li class="nav-item">
                     <a class="nav-link" href="#" id="revenueNav">Revenue</a>
                     </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="#" id="menu">Menu</a>
+                    </li>
                 </ul>
                 <div id="logoutNavLocation">
                 </div>
