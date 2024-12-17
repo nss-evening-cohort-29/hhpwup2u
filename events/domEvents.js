@@ -11,6 +11,9 @@ import showOpenItemForMenu from "../Dom/menuOrderPage";
 import { getSingleMenuItem, getMenuItems, deleteMenuItem } from "../api/apiMenu";
 import showMenuItems from "../Dom/menu";
 import createMenuItemForm from "../Form/createMenuItemForm";
+import { deleteArtistItem, getArtistItems } from "../api/apiArtist";
+import BookArtistForm from "../Form/createArtistForm";
+import homeBuilder from "../Dom/homeScreen";
 
 const domEvents = (user, admin) => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
@@ -152,6 +155,18 @@ const domEvents = (user, admin) => {
       })
     }
 
+    //Delete an artist
+    if (e.target.id.includes('delete-new-artist')) {
+      const [, firebaseKey] = e.target.id.split('--');
+      deleteArtistItem(firebaseKey).then(() => 
+        getArtistItems().then ((artist) => homeBuilder(user, artist, admin))
+    )
+
+    }
+
+    if (e.target.id.includes('book-new-artist')) {
+      BookArtistForm();
+    }
 
 
   });

@@ -8,6 +8,8 @@ import { createRevenue, editRevenue } from '../api/apiRevenue';
 import renderToDOM from '../utils/renderToDom';
 import { getMenuItems, createMenuItem, editMenuItem } from '../api/apiMenu';
 import showMenuItems from '../Dom/menu';
+import { createArtistItem, editArtistItem, getArtistItems } from '../api/apiArtist';
+import homeBuilder from '../Dom/homeScreen';
 
 const formEvents = (user, admin) => {
   document.querySelector('#form-container').addEventListener('submit', (e) => {
@@ -170,6 +172,25 @@ const formEvents = (user, admin) => {
         });
       });
     }
+
+    else if (targetId.includes('book-new-artist-submit')) {
+
+      const payload = {
+        artistDescription: document.querySelector('#artistDescription').value ,
+        artistImage: document.querySelector('#artistImage').value,
+        artistName: document.querySelector('#artistName').value,
+        performanceDate: document.querySelector('#artistPDate').value,
+      }
+
+      createArtistItem(payload).then(({ name }) => {
+        const patchPayload = { firebaseKey: name };
+        editArtistItem(patchPayload).then(() =>
+          getArtistItems().then((item) => homeBuilder(user, item, admin))
+        );
+      });
+    }
+
+
   });
 };
 

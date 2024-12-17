@@ -46,9 +46,15 @@ const navEvent = (user , admin) => {
         }
 
         
-        // MENU SECTION
+        // HOME 
         if (e.target.id.includes('homeNav')) {
-            getArtistItems().then ((artist) => homeBuilder(user, artist)) 
+            if(admin === 2) {
+                getArtistItems().then ((artist) => homeBuilder(user, artist, admin))
+            }
+            else {
+                getArtistItems().then ((artist) => homeBuilder(user, artist)) 
+            }
+
         }
 
         })

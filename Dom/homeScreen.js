@@ -2,20 +2,25 @@ import renderToDOM from '../utils/renderToDom';
 import clearDom from '../utils/clearDom';
 
 /* eslint-disable */
-const homeBuilder = (user, artists) => {
+const homeBuilder = (user, artists, admin) => {
 
   clearDom();
+
   let domString = `
-
-  <div> 
-  <button type="button" class="btn btn-outline-info" id="book-new-artist"">Book New Artist</button>
-  </div>
-
-  <div id="homeScreen">
+    <div id="homeScreen">
     <h5> Welcome ${user.displayName}</h5>
-    <div id="carouselExampleIndicators" class="carousel slide">
+    `;
 
-      <div class="carousel-indicators">`;
+  if (admin === 2 ) {
+    domString += `
+    <div> 
+    <button type="button" class="btn btn-outline-info" id="book-new-artist">Book New Artist</button>
+    </div>`
+  } 
+
+  domString += `
+  <div id="carouselExampleIndicators" class="carousel slide">
+  <div class="carousel-indicators">`
 
   artists.forEach((artist, index) => {
     domString += `<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${index}" class="${index === 0 ? 'active' : ''}" aria-label="Slide ${index + 1}"></button>`;
@@ -33,7 +38,13 @@ const homeBuilder = (user, artists) => {
           <h5>${artist.artistName}</h5>
           <p>${artist.artistDescription}</p>
           <p>${artist.performanceDate}</p>
-          <p>${artist.location}</p>
+          ${admin === 2 ? 
+            `<div> 
+            <button type="button" class="btn btn-outline-info" id="delete-new-artist--${artist.firebaseKey}">Delete Event</button>
+            </div>`
+            :
+            ''
+            }
         </div>
       </div>
       `;
