@@ -20,10 +20,10 @@ const buildNavBar = () => {
                     <a class="nav-link" href="#" id="viewOrderNav">View Orders</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="#" id="revenueNav">Revenue</a>
+                    <a class="nav-link" href="#" id="menu">Menu</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="#" id="menu">Menu</a>
+                    <a class="nav-link" href="#" id="revenueNav">Revenue</a>
                     </li>
                 </ul>
                 <div id="logoutNavLocation">

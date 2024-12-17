@@ -151,6 +151,7 @@ const formEvents = (user, admin) => {
             totalOrderAmount: totalPrice,
             timeClosed: Date.now(),
             orderFirebaseKey: firebaseKey,
+            uid: user.uid,
           };
 
           createRevenue(payload).then(({ name }) => {
