@@ -34,10 +34,10 @@ const showOrders = (array) => {
       <div class="card">
         <div class="card-body ">
           <h5 class="card-title">${order.orderName}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">${order.status === 'close' ? 'Closed' : 'Open'}</h6>
+          ${order.status === 'close' ? '<span class="badge text-bg-secondary" id= "badgeOnOrder">Closed</span>' : '<span class="badge rounded-pill text-bg-warning" id= "badgeOnOrder">Open</span>'}
           <p class="card-text">${order.customerPhone}</p>
           <p class="card-text">${order.customerEmail}</p>
-          <p class="card-text">${order.orderType}</p>
+          <p class="card-text">Order Type: ${order.orderType}</p>
           <a href="#" class="card-link" id="details-order-btn__${order.firebaseKey}__${order.status}">Details</a>
           ${order.status === 'open' ? `<a href="#" class="card-link" id="edit-order-btn__${order.firebaseKey}">Edit</a>` : ''}
           ${order.status === 'open' ? `<a href="#" class="card-link" id="delete-order-btn__${order.firebaseKey}">Delete</a>` : ''}
