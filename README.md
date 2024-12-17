@@ -1,4 +1,4 @@
-# Hip Hop, Pizza, and Wangz (team Up2U)  [![Netlify Status](https://api.netlify.com/api/v1/badges/882acd35-2dfc-4369-abed-32f6eb643375/deploy-status)](https://app.netlify.com/sites/stunning-cupcake-ad077a/deploys)
+# Hip Hop, Pizza, and Wangz (Team Up2U)  [![Netlify Status](https://api.netlify.com/api/v1/badges/882acd35-2dfc-4369-abed-32f6eb643375/deploy-status)](https://app.netlify.com/sites/stunning-cupcake-ad077a/deploys)
 <!-- update the netlify badge above with your own badge that you can find at netlify under settings/general#status-badges -->
 
 A Point-of-Sale (POS) System where a restaurant can keep track of their orders, menu items, and revenue all in one convenient place.
@@ -16,13 +16,13 @@ A Point-of-Sale (POS) System where a restaurant can keep track of their orders, 
 - On the home page, the user can use the artist booking system to book an artist at a venue in their local area.
   
 
-## Video Walkthrough of APP NAME <!-- A loom link is sufficient -->
+## Video Walkthrough of Hip Hop, Pizza, and Wangz (Team Up2U) <!-- A loom link is sufficient -->
 
 
 ## Relevant Links <!-- Link to all the things that are required outside of the ones that have their own section -->
 - [Check out the deployed site](LINK)
-- [Wireframes](#your-link)
-- [Project Board](LINK)
+- [Wireframes]((https://www.figma.com/design/4y3EZddALuBR3ouSEM57Np/MVP?node-id=0-1&node-type=canvas&t=T3bySecaMCML3DWh-0))
+- [Project Board](https://github.com/orgs/nss-evening-cohort-29/projects/15)
 
 ## Project Screenshots <!-- These can be inside of your project. Look at the repos from class and see how the images are included in the readme -->
 
