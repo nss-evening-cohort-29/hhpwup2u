@@ -1,46 +1,41 @@
-<div style="text-align:center">
-<h1>Hip Hop, Pizza, and Wangs (HHP+W)</h1>
+# Hip Hop, Pizza, and Wangz (team Up2U)  [![Netlify Status](https://api.netlify.com/api/v1/badges/882acd35-2dfc-4369-abed-32f6eb643375/deploy-status)](https://app.netlify.com/sites/stunning-cupcake-ad077a/deploys)
+<!-- update the netlify badge above with your own badge that you can find at netlify under settings/general#status-badges -->
 
-<image src="https://user-images.githubusercontent.com/29741570/205346767-a182560c-64a6-4cfa-80b3-0d64cf998242.png" style="height:300px;"></image></div>
+A Point-of-Sale (POS) System where a restaurant can keep track of their orders, menu items, and revenue all in one convenient place.
 
-## Get Started
-**READ ALL INSTRUCTIONS BEFORE BEGINNING THIS PROJECT.** Take notes as you read.
+[View App](LINK)
 
-Everything that needs to be done before coding starts.
+## About the User <!-- This is a scaled down user persona -->
+- The ideal user for this application is a restaurant owner who needs a system to keep track of their business.
 
-* **ERD** - Completed [ Create an ERD to show the relationships between all of  your data](https://dbdiagram.io/d/67522fcbe9daa85acad4b9fe)
-* **Flowchart** - Completed [Plan out the flow of your data through the application](https://lucid.app/lucidspark/90674704-b472-42b4-aac8-10c983c43d21/edit?beaconFlowId=704ACA901A059082&invitationId=inv_a4480cf9-2d4d-48bb-adce-80089792af29&page=0_0#)
-* **Github Issue Tickets** - Completed
-* **Github Milestones** - Completed
-* **Postman Collection** - Create a postman collection to store and test out all of your API calls.
-* **[Wireframes](https://www.figma.com/file/4y3EZddALuBR3ouSEM57Np/MVP?node-id=0%3A1)** 
+## Features <!-- List your app features using bullets! Do NOT use a paragraph. No one will read that! -->
+- Users can add a new order, including details such as order name, customer contact info, and order type (walk-in vs by phone). They can also search and filter orders
+- Non-admin users can edit existing orders and add items to them from the menu, while admins can create new menu items.
+- Once menu items are added the user can log payment, select a payment method and add a tip amount. Adding these details will mark the order as closed.
+- Once an order is closed, it will be added to the revenue tab where the user can see revenue data over a certain time period.
+- On the home page, the user can use the artist booking system to book an artist at a venue in their local area.
+  
 
-## Definition of Done
+## Video Walkthrough of APP NAME <!-- A loom link is sufficient -->
 
-Do not submit this project until all of the following are complete:
 
-1. All items are completed in getting started
-1. MVP, defined by the Acceptance Criteria, has been completed
-1. The title of your application is visible in the browser tab
-1. The project has been deployed
-1. Loom video has been created
-1. `README.md` has been updated
+## Relevant Links <!-- Link to all the things that are required outside of the ones that have their own section -->
+- [Check out the deployed site](LINK)
+- [Wireframes](#your-link)
+- [Project Board](LINK)
 
-## Requirements
+## Project Screenshots <!-- These can be inside of your project. Look at the repos from class and see how the images are included in the readme -->
 
-Things to remember while coding out the project
 
-* Clean code - single responsibility principle
-* ES6 Modules bundled with webpack
-* No errors - linters should be clean
-* Bootstrap for styling
-* Completely planned out - before each section you should be making new cards on your Github project board before you code
-* Wireframes are provided for you for MVP
-* You should have an ERD
 
-### Instructions
 
-* [MVP Definition - It Gets the Job Done](./instructions/mvp.md)
-* [Stretch Goals 1 - Filtering the Data](./instructions/stretch-1.md)
-* [Stretch Goals 2 - Dealing with Change](./instructions/stretch-2.md)
-* [Stretch Goals 3 - Play that Funky Music](./instructions/stretch-3.md)
+
+
+
+
+
+## Contributors
+- [Justin Glotzbach]([https://github.com/your-github-url](https://github.com/justinglotz))
+- [Damitry Dong]([https://github.com/DamitryDong])
+- [Jaylen Webb]([https://github.com/jaylenxr])
+- [Tyler Davenport]([https://github.com/Tyler-Davenport])
