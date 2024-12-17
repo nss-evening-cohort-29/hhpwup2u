@@ -11,10 +11,16 @@ const buildNavBar = () => {
                 <a class="navbar-brand">Navbar</a>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
+                    <a class="nav-link" href="#" id="homeNav">Home</a>
+                    </li>
+                    <li class="nav-item">
                     <a class="nav-link" href="#" id="create-order">Create Order</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="#" id="viewOrderNav">View Orders</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="#" id="menu">Menu</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="#" id="revenueNav">Revenue</a>

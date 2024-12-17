@@ -7,6 +7,11 @@ html, body {
 
 #main-container {
   display: flex;
+  flex-flow: row wrap;
+}
+
+.card {
+  width: 200px;
 }
 
 #order-value {
@@ -42,4 +47,69 @@ html, body {
   background-color: #30b0a3;
   color: black;
   border: none;
+}
+
+#myChart {
+  width: 500px;
+  height: 500px;
+}
+
+.chartjs-tooltip {
+  white-space: pre-line; /* Ensures the newline character \n is respected */
+}
+
+// TODO: Styling for date range selector, make list items wider and font size bigger
+// .ranges ul li {
+//   width: 350px;
+//   font-size: 18px;
+// }
+
+// .show-ranges {
+//   min-width: 350px;
+// }
+
+// .opensright {
+//   width: 350px;
+// }
+
+#reportrange {
+  width: 350px;
+}
+
+#myChart {
+  width: 500px;
+  height: 500px;
+}
+
+.chartjs-tooltip {
+  white-space: pre-line; /* Ensures the newline character \n is respected */
+}
+
+// TODO: Styling for date range selector, make list items wider and font size bigger
+// .ranges ul li {
+//   width: 350px;
+//   font-size: 18px;
+// }
+
+// .show-ranges {
+//   min-width: 350px;
+// }
+
+// .opensright {
+//   width: 350px;
+// }
+
+#reportrange {
+  width: 350px;
+}
+
+.carousel-inner {
+  height: 700px; 
+}
+.carousel-item {
+  height: 100%; 
+}
+.carousel-item img {
+  height: 100%; 
+  width: 100%; 
 }

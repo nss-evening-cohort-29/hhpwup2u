@@ -14,7 +14,7 @@ const closeOrderForm = (orderFirebaseKey, totalPrice) => {
        </select>
       </div>
       <div class="mb-3">
-  <label for="tip-" class="form-label">Item Price</label>
+  <label for="tip-" class="form-label">Tip Amount</label>
   <input type="tip" class="form-control" id="tip-amount" placeholder="tip amount" required>
   <button type="submit" class="btn btn-primary">Close Order</button>
 </div>`;
