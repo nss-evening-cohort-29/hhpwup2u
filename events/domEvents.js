@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { getOrders, deleteOrder, getSingleOrder, getAllOrders } from "../api/apiOrders";
+import { getOrders, deleteOrder, getSingleOrder, getAllOrders, searchOrders, getOpen, getClosed } from "../api/apiOrders";
 import showOrders from "../Dom/ordersPage";
 import showItems from "../Dom/orderDetail";
 import { getItem, getSingleItem } from "../api/apiItems";
@@ -13,7 +13,7 @@ import closeOrderForm from "../Form/closeOrderForm";
 const domEvents = (user, admin) => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
     e.preventDefault();
-    
+
     //VIEW ORDERS PAGE AS ADMIN
     if (e.target.id.includes('view-order-btn') && admin === 2) {
       getAllOrders().then(showOrders);
@@ -43,14 +43,14 @@ const domEvents = (user, admin) => {
 
       getSingleOrder(firebaseKey).then((orderObj) => createOrderForm(orderObj))
     }
-    
-    
+
+
     //Payment FORM
     if (e.target.id.includes('payment-order-btn')) {
       const [, firebaseKey, totalPrice] = e.target.id.split('--');
       closeOrderForm(firebaseKey, totalPrice)
     }
-      
+
     //ADD ITEM FORM
     if (e.target.id.includes('add-item-btn')) {
       const [, firebaseKey] = e.target.id.split('--');
@@ -61,9 +61,9 @@ const domEvents = (user, admin) => {
     if (e.target.id.includes('edit-item-btn')) {
       const [, itemfirebaseKey, orderFirebaseKey] = e.target.id.split('__');
       getSingleItem(itemfirebaseKey).then((itemObj) => createItemForm (itemObj, orderFirebaseKey) )
-      
+
     }
-    
+
     //VIEW ITEM DETAILS
     if (e.target.id.includes('details-order-btn')) {
        const [, firebaseKey, orderStatus] = e.target.id.split('__');
@@ -97,7 +97,26 @@ const domEvents = (user, admin) => {
       }
     }
 
+    // SEARCH ORDER VALUES
+    document.querySelector('#search').addEventListener('keyup', () => {
+    searchOrders(user);
+
+    });
+
+  // FILTER ORDER STATUS
+  if (e.target.id.includes('order-status')) {
+    console.warn("closed")
+    if (document.querySelector('#order-status').value === 'open'){
+  console.warn("open")
+      getOpen(user.uid).then((orders) => showOrders(orders))
+    }
+  if (document.querySelector ('#order-status').value === 'closed'){
+      getClosed(user.uid).then((orders) => showOrders(orders))
+}
+  }
   });
 }
+
+
 
 export default domEvents;
