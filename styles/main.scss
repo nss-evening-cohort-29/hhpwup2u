@@ -155,6 +155,10 @@ html {
 .card {
   width: 200px;
 }
+
+#order-value {
+  margin-bottom: 20px; /* Add some space between the search bar and cards */
+}
 // Styling for background image on the login screen
 .login-screen {
   background-image: url(../assets/images/HipHopPizzaWangzLoginBackground.jpg);
@@ -271,7 +275,7 @@ html {
 }
 
 //Main container for cards
-#main-container {
+#OrderCardsSection {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between; 
