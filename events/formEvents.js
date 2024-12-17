@@ -130,9 +130,10 @@ const formEvents = (user, admin) => {
         menuItemImage: document.querySelector('#item-image').value,
         menuItemPrice: document.querySelector('#item-price').value,
         menuItemSale: document.querySelector('#sale').checked,
+        firebaseKey,
       };
 
-      editMenuItem(payload).then(() => getMenuItems(user.uid).then(showMenuItems));
+      editMenuItem(payload).then(() => getMenuItems(user.uid).then(item => showMenuItems(item, admin)));
 
     // Handle order closure
     }
