@@ -1,6 +1,7 @@
 import clearDom from '../utils/clearDom';
 import renderToDOM from '../utils/renderToDom';
 
+/* eslint-disable */
 const showOrders = (array) => {
   // If order is open, put it at the beginning
   const sortedOrders = array.sort((a, b) => {
@@ -12,7 +13,18 @@ const showOrders = (array) => {
   });
   clearDom();
 
-  let domString = '';
+  let domString = `
+  <div id="order-value">
+  <div class="search-container">
+  <input class="form-control mr-sm-2" id="search" placeholder="Search by phone or name" aria-label="Search"/>
+  <select class="form-control" id="order-status">
+        <option value="all">Order Status</option>
+        <option value="open">Open</option>
+        <option value="closed">Closed</option>
+      </select>
+      <button id="search-btn" class="btn btn-primary">Search</button>
+    </div>
+  </div>`
 
   sortedOrders.forEach((order) => {
     domString += `

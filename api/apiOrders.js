@@ -1,6 +1,7 @@
 /* eslint-disable */
 import client from "../utils/client";
 import { getItem } from "./apiItems";
+import showOrders from "../Dom/ordersPage";
 
 const endpoint = client.databaseURL
 
@@ -23,7 +24,7 @@ const getAllOrders = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// GET Orders 
+// GET Orders
 const getOrders = (uid) => new Promise((resolve, reject) => {
     fetch(`${endpoint}/Orders.json?orderBy="uid"&equalTo="${uid}"`, {
       method: 'GET',
@@ -69,6 +70,7 @@ const deleteOrder = (firebaseKey) => new Promise((resolve, reject) => {
       .catch(reject);
   });
 
+
 // Delete order and items attached to that order
 const deleteOrderItemsRelationship = (firebaseKey) => new Promise((resolve, reject) => {
   getItem(firebaseKey).then((orderItemsArray) => {
@@ -80,7 +82,7 @@ const deleteOrderItemsRelationship = (firebaseKey) => new Promise((resolve, reje
   }).catch(reject);
 });
 
-// Edit Order  /////////MIGHT HAVE ISSUES 
+// Edit Order  /////////MIGHT HAVE ISSUES
 const editOrder = (payload) => new Promise((resolve, reject) => {
     fetch(`${endpoint}/Orders/${payload.firebaseKey}.json`, {
       method: 'PATCH',
@@ -107,24 +109,36 @@ const editOrder = (payload) => new Promise((resolve, reject) => {
       .catch(reject);
   });
 
-  // GET Open Orders
-const getOpenOrders = () => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/Orders.json?orderBy="status"&equalTo="open"`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'applications/json',
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      if (data) {
-        resolve(Object.values(data));
-      } else {
-        resolve([]);
-      }
+  // FILTER ORDER STATUS
+
+  const getClosed = (uid) => new Promise((resolve, reject) => {
+    fetch(`${endpoint}/Orders.json?orderBy="uid"&equalTo="${uid}"`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
-    .catch(reject);
-});
+      .then((response) => response.json())
+      .then((data) => {
+        const closed = Object.values(data)
+        resolve(closed);
+      })
+      .catch(reject);
+  });
+
+    // SEARCH ORDER BY NAME, PHONE, & ORDER STATUS
+
+    const searchOrders = (user) => {
+      const searchValue = document.querySelector('#search').value.toLowerCase();
+      getOrders(user.uid).then((orders) => {
+        const orderValue = orders.filter((order) =>
+          order.customerPhone.toLowerCase().includes(searchValue) ||
+          order.orderName.toLowerCase().includes(searchValue)
+        );
+          showOrders(orderValue);
+      });
+    };
+
 
 export {
     getOrders,
@@ -132,6 +146,9 @@ export {
     deleteOrder,
     editOrder,
     getSingleOrder,
+    getClosed,
     getAllOrders,
-    getOpenOrders,
+    deleteOrderItemsRelationship,
+    searchOrders
+
 }

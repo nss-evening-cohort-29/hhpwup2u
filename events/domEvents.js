@@ -1,5 +1,7 @@
 /* eslint-disable */
-import { getOrders, deleteOrder, getSingleOrder, getAllOrders, getOpenOrders } from "../api/apiOrders";
+
+import { getOrders, deleteOrder, getSingleOrder, getAllOrders, searchOrders, getClosed } from "../api/apiOrders";
+
 import showOrders from "../Dom/ordersPage";
 import showItems from "../Dom/orderDetail";
 import { getItem, getSingleItem } from "../api/apiItems";
@@ -15,21 +17,44 @@ import createMenuItemForm from "../Form/createMenuItemForm";
 const domEvents = (user, admin) => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
     e.preventDefault();
-    
+
+    //VIEW ORDERS PAGE AS ADMIN
+    if (e.target.id.includes('view-order-btn') && admin === 2) {
+      getAllOrders().then(showOrders);
+    }
+
+    //VIEW ORDERS PAGE
+    if (e.target.id.includes('view-order-btn')) {
+      if (admin === 2) {
+        getAllOrders().then(showOrders);
+      }
+      else (getOrders(user.uid).then(showOrders))
+    }
+
+    //VIEW REVENUE PAGE
+    if (e.target.id.includes('view-revenue')) {
+      getRevenue().then((closedOrders) => revenueBuilder(closedOrders));
+    }
+
+    // CREATE ORDER (DOM)
+    if (e.target.id.includes('create-order')) {
+      createOrderForm({});
+    }
+
     // EDIT ORDER
     if (e.target.id.includes('edit-order-btn')) {
       const [, firebaseKey] = e.target.id.split('__');
 
       getSingleOrder(firebaseKey).then((orderObj) => createOrderForm(orderObj))
     }
-    
-    
+
+
     //Payment FORM
     if (e.target.id.includes('payment-order-btn')) {
       const [, firebaseKey, totalPrice] = e.target.id.split('--');
       closeOrderForm(firebaseKey, totalPrice)
     }
-      
+
     //ADD ITEM FORM
     if (e.target.id.includes('add-item-btn')) {
       const [, firebaseKey] = e.target.id.split('--');
@@ -40,9 +65,9 @@ const domEvents = (user, admin) => {
     if (e.target.id.includes('edit-item-btn')) {
       const [, itemfirebaseKey, orderFirebaseKey] = e.target.id.split('__');
       getSingleItem(itemfirebaseKey).then((itemObj) => createItemForm (itemObj, orderFirebaseKey) )
-      
+
     }
-    
+
     //VIEW ITEM DETAILS
     if (e.target.id.includes('details-order-btn')) {
        const [, firebaseKey, orderStatus] = e.target.id.split('__');
@@ -88,6 +113,45 @@ const domEvents = (user, admin) => {
       }
     }
 
+
+    // SEARCH ORDER VALUES
+    document.querySelector('#search').addEventListener('keyup', () => {
+    searchOrders(user);
+
+    });
+
+  // FILTER ORDER STATUS
+  if (e.target.id.includes('order-status')) {
+
+    if (document.querySelector('#order-status').value === 'open'){
+      console.warn("open")
+      getClosed(user.uid).then((orders) => {
+        let closedArray = []
+      orders.forEach(element => {
+       if (element.status === 'open') {
+        closedArray.push(element)
+       }
+        })
+        console.log(closedArray)
+        showOrders(closedArray)
+      }
+      )
+    }
+  if (document.querySelector ('#order-status').value === 'closed'){
+    console.warn("closed")
+      getClosed(user.uid).then((orders) => {
+        let closedArray = []
+      orders.forEach(element => {
+       if (element.status === 'closed') {
+        closedArray.push(element)
+       }
+        })
+        console.log(closedArray)
+        showOrders(closedArray)
+      }
+      )
+}
+  }
     if (e.target.id.includes('Order-menu-btn')) {
       const [, MenuItemKey] = e.target.id.split('--');
         if (admin === 2) {
@@ -151,10 +215,10 @@ const domEvents = (user, admin) => {
 
       })
     }
-
-
-
+    
   });
 }
+
+
 
 export default domEvents;
