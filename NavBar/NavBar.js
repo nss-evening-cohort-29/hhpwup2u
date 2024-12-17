@@ -3,15 +3,14 @@ import renderToDOM from '../utils/renderToDom';
 
 const buildNavBar = () => { 
      const domString = `
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary" id="entireNav">
             <div class="container-fluid" id="NavigationRefs">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand">Navbar</a>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                    <a class="nav-link" href="#" id="homeNav">Home</a>
+                    <a class="nav-link" href="#" id="homeNav">Venue</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="#" id="create-order">Create Order</a>
