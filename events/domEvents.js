@@ -4,36 +4,17 @@ import showOrders from "../Dom/ordersPage";
 import showItems from "../Dom/orderDetail";
 import { getItem, getSingleItem } from "../api/apiItems";
 import { deleteItem, createItem, editItem } from "../api/apiItems";
-import revenueBuilder from "../Dom/revenuePage";
-import { getRevenue } from "../api/apiRevenue";
 import createOrderForm from "../Form/createOrderForm";
 import createItemForm from "../Form/createItemForm";
 import closeOrderForm from "../Form/closeOrderForm";
 import showOpenItemForMenu from "../Dom/menuOrderPage";
-import { getSingleMenuItem } from "../api/apiMenu";
+import { getSingleMenuItem, getMenuItems } from "../api/apiMenu";
+import showMenuItems from "../Dom/menu";
 
 const domEvents = (user, admin) => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
     e.preventDefault();
     
-    //VIEW ORDERS PAGE
-    if (e.target.id.includes('view-order-btn')) {
-      if (admin === 2) {
-        getAllOrders().then(showOrders);
-      }
-      else (getOrders(user.uid).then(showOrders))
-    }
-
-    //VIEW REVENUE PAGE
-    if (e.target.id.includes('view-revenue')) {
-      getRevenue().then((closedOrders) => revenueBuilder(closedOrders));
-    }
-
-    // CREATE ORDER (DOM)
-    if (e.target.id.includes('create-order')) {
-      createOrderForm({});
-    }
-
     // EDIT ORDER
     if (e.target.id.includes('edit-order-btn')) {
       const [, firebaseKey] = e.target.id.split('__');
@@ -85,12 +66,16 @@ const domEvents = (user, admin) => {
       }
     }
 
-    // DELETE ORDER AND ORDER ITEMS
-    /*
-    if (e.target.id.includes('delete-order-btn')) {
-      if (window.confirm('Are you sure you want to delete this order? Items associated with this order will also be deleted.))
-        }
-    */
+    // GO to Menu item from order page
+    if (e.target.id.includes('Go-to-Menu-from-item-btn')) {
+      if (admin === 2){
+        getMenuItems(user.uid).then((item) => showMenuItems(item, admin));
+      }
+      else {
+        getMenuItems(user.uid).then((item) => showMenuItems(item));
+      }
+    }
+
 
     //DELETE ITEM
     if (e.target.id.includes('delete-item-btn')) {
