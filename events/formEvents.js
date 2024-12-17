@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { createOrder, editOrder, getOrders, getSingleOrder } from '../api/apiOrders';
+import { createOrder, editOrder, getOrders, getSingleOrder, getAllOrders } from '../api/apiOrders';
 import showOrders from '../Dom/ordersPage';
 import { editItem, getItem, createItem, } from '../api/apiItems';
 import showItems from '../Dom/orderDetail';
@@ -9,40 +9,70 @@ import renderToDOM from '../utils/renderToDom';
 import { getMenuItems, createMenuItem, editMenuItem } from '../api/apiMenu';
 import showMenuItems from '../Dom/menu';
 
-const formEvents = (user) => {
+const formEvents = (user, admin) => {
   document.querySelector('#form-container').addEventListener('submit', (e) => {
     e.preventDefault();
     const targetId = e.target.id;
 
     // Handle order creation
     if (targetId.includes('submit-order')) {
-      const payload = {
-        orderName: document.querySelector('#name').value,
-        customerPhone: document.querySelector('#custPhone').value,
-        customerEmail: document.querySelector('#email').value,
-        orderType: document.querySelector('#order-type').value,
-        status: "open",
-        uid: user.uid,
-      };
+      if (admin === 2) {
+        const payload = {
+          orderName: document.querySelector('#name').value,
+          customerPhone: document.querySelector('#custPhone').value,
+          customerEmail: document.querySelector('#email').value,
+          orderType: document.querySelector('#order-type').value,
+          status: "open",
+          uid: user.uid,
+        };
 
-      createOrder(payload).then(({ name }) => {
-        const patchPayload = { firebaseKey: name };
-        editOrder(patchPayload).then(() => getOrders(user.uid).then(showOrders));
-      });
+        createOrder(payload).then(({ name }) => {
+          const patchPayload = { firebaseKey: name };
+          editOrder(patchPayload).then(() => getAllOrders().then(showOrders));
+        });
+      }
+      else {
+        const payload = {
+          orderName: document.querySelector('#name').value,
+          customerPhone: document.querySelector('#custPhone').value,
+          customerEmail: document.querySelector('#email').value,
+          orderType: document.querySelector('#order-type').value,
+          status: "open",
+          uid: user.uid,
+        };
+
+        createOrder(payload).then(({ name }) => {
+          const patchPayload = { firebaseKey: name };
+          editOrder(patchPayload).then(() => getOrders(user.uid).then(showOrders));
+        });
+      }
 
     // Handle order update
     } else if (targetId.includes('update-order')) {
       const [, firebaseKey] = targetId.split('--');
-      const payload = {
-        orderName: document.querySelector('#name').value,
-        customerPhone: document.querySelector('#custPhone').value,
-        customerEmail: document.querySelector('#email').value,
-        orderType: document.querySelector('#order-type').value,
-        firebaseKey,
-      };
 
-      editOrder(payload).then(() => getOrders(user.uid).then(showOrders));
+      if (admin === 2) {
+        const payload = {
+          orderName: document.querySelector('#name').value,
+          customerPhone: document.querySelector('#custPhone').value,
+          customerEmail: document.querySelector('#email').value,
+          orderType: document.querySelector('#order-type').value,
+          firebaseKey,
+        };
+  
+        editOrder(payload).then(() => getAllOrders().then(showOrders));
+      }
+      else {
+        const payload = {
+          orderName: document.querySelector('#name').value,
+          customerPhone: document.querySelector('#custPhone').value,
+          customerEmail: document.querySelector('#email').value,
+          orderType: document.querySelector('#order-type').value,
+          firebaseKey,
+        };
 
+        editOrder(payload).then(() => getOrders(user.uid).then(showOrders));
+      }
     // Handle item creation
     } else if (targetId.includes('submit-item')) {
       const [, firebaseKeyFromOrders] = targetId.split('--');
@@ -88,7 +118,7 @@ const formEvents = (user) => {
       createMenuItem(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         editMenuItem(patchPayload).then(() =>
-          getMenuItems(user.uid).then(showMenuItems)
+          getMenuItems(user.uid).then((item) => showMenuItems(item, admin))
         );
       });
     }

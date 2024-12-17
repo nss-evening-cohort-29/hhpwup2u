@@ -2,7 +2,26 @@
 import client from "../utils/client";
 const endpoint = client.databaseURL
 // GET REVENUE
-const getRevenue = () => new Promise((resolve, reject) => {
+const getRevenue = (uid) => new Promise((resolve, reject) => {
+    fetch(`${endpoint}/revenue.json?orderBy="uid"&equalTo="${uid}"`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'applications/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data) {
+          resolve(Object.values(data));
+        } else {
+          resolve([]);
+        }
+      })
+      .catch(reject);
+  });
+
+//GET ALL REVENUE
+  const getAllRevenue = () => new Promise((resolve, reject) => {
     fetch(`${endpoint}/revenue.json`, {
       method: 'GET',
       headers: {
@@ -57,4 +76,5 @@ const getRevenue = () => new Promise((resolve, reject) => {
     getRevenue,
     createRevenue,
     editRevenue,
+    getAllRevenue,
   };
