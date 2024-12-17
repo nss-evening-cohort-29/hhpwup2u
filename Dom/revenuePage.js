@@ -4,9 +4,11 @@ import clearDom from '../utils/clearDom';
 import moneyFormat from '../utils/moneyFormat';
 import createChart from '../components/createChart';
 import { getItem } from '../api/apiItems';
+import hexColorGenerator from '../utils/hexColorGenerator';
 
 const revenueBuilder = (closedOrders) => {
   clearDom();
+  // Page Header
   const domstring = `
   <div id="revenue-page">
       <h1> REVENUE </h1>
@@ -26,6 +28,7 @@ const revenueBuilder = (closedOrders) => {
   let startSearch = '';
   let endSearch = '';
 
+  // Date Picking Stuff
   $(function () {
     const start = moment().subtract(29, 'days');
     const end = moment();
@@ -79,7 +82,6 @@ const dateSearch = async (array, startSearch, endSearch) => {
     (order) => order.timeClosed > startSearch && order.timeClosed < endSearch
   );
   
-  // Wait for all the async operations inside the forEach
   for (const item of filteredArr) {
     const items = await getItem(item.orderFirebaseKey);  // Wait for getItem to resolve
     items.forEach((element) => {
@@ -111,9 +113,7 @@ const dateSearch = async (array, startSearch, endSearch) => {
     }
   }
 
-  // Log the keys after all async operations are complete
-  console.warn(Object.keys(itemRevenueObj)); // This will now log after all getItem promises have resolved
-
+  // Second part of the DOM renders with revenue calculations
   let newdomstring = `<h1> Total Revenue: ${moneyFormat(totalRevenue)} </h1>
   <h4>Total orders: ${totalOrders}</h4>
   <h4>Average Revenue Per Order: ${moneyFormat(totalRevenue / totalOrders)}</h4>
@@ -124,8 +124,10 @@ const dateSearch = async (array, startSearch, endSearch) => {
   <button type="button" class="btn btn-dark" id="call-vs-walk">Order Type</button>
   <button type="button" class="btn btn-dark" id="best-sellers">Best Selling Items</button>`;
   let chartInstance = null;
+
 // CHART STUFF
   renderToDOM('#revenue-render', newdomstring);
+  // Default chart that renders when page is loaded
   createChart(
     'myChart',
     [`Cash: ${typeCash}`, `Card: ${typeCredit}`],
@@ -134,7 +136,7 @@ const dateSearch = async (array, startSearch, endSearch) => {
     totalRevenue
   );
 
-  
+// Order Type Chart: Call-In vs. Walk-In
 document.querySelector('#call-vs-walk').addEventListener('click', () => {
   createChart(
     'myChart',
@@ -144,6 +146,8 @@ document.querySelector('#call-vs-walk').addEventListener('click', () => {
     totalRevenue
   );
 })
+
+// Payment Type Chart: Cash vs. Card
 document.querySelector('#cash-vs-card').addEventListener('click', () => {
   createChart(
     'myChart',
@@ -153,12 +157,14 @@ document.querySelector('#cash-vs-card').addEventListener('click', () => {
     totalRevenue
   );
 });
+
+// Best Selling Items Chart
 document.querySelector('#best-sellers').addEventListener('click', () => {
   createChart(
     'myChart',
     Object.keys(itemRevenueObj),
     Object.values(itemRevenueObj),
-    ['#0da124', 'rgb(54, 162, 235)', '#0da124', '#0da124', '#0da124', '#0da124'],
+    hexColorGenerator(itemRevenueObj),
     totalRevenue
   );
 });
