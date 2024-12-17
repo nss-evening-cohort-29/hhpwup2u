@@ -18,7 +18,7 @@ const showMenuItems = (array, admin) => {
       <h5 class="menu-item-title">${item.menuItemName}</h5>
       <hr>
       </div>
-      <img class="menu-card-img-top" src=${item.menuItemImage} alt=${item.menuItemName} style="height: 40px;">
+      <img class="menu-card-img-top" src=${item.menuItemImage} alt=${item.menuItemName} style="height: 225px;">
       <p class="card-text bold">${item.menuItemSale ? `<span class="badge badge-info sale-badge"><i class="fa fa-bell" aria-hidden="true"></i> Sale</span> $${item.menuItemPrice}` : `$${item.menuItemPrice}`}</p>
       ${admin === 2 ? `<a href="#" class="card-link" id="delete-menu-btn--${item.firebaseKey}">Delete</a>` : ''}
       ${admin === 2  ? `<a href="#" class="card-link" id="edit-menu-btn--${item.firebaseKey}">Edit</a>` : ''}
