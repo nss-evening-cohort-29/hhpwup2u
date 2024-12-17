@@ -24,10 +24,12 @@ html {
   left: 3%;
   right: 3%;
   bottom: 0;
-  border: 30px solid transparent;
-  border-image: linear-gradient(135deg,#ffcc00, #00ffff,#ff00d4);
+  border: 40px solid transparent;
+  border-image: linear-gradient(135deg,#ffcc00,#ffd500, #00ffff,#ff00d4,#ffcc00,#ffcc00);
   border-image-slice: 1;
   transform: rotate(8deg); 
+  z-index: 1;
+  height: 90%;
 }
 // BRAND FOR LOGO (TOOK OFF FROM NAV)
 #brandNav {
@@ -110,7 +112,7 @@ html {
   animation: gradientShift 3s infinite ease-in-out;
   border-bottom: 5px solid #ff00d4; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
-  z-index: 1;
+  z-index: 2;
 }
 
 @keyframes gradientShift {
@@ -184,24 +186,10 @@ html {
   color: black;
   border: none;
 }
-
+//////////////////// SECTION FOR GRAPH IDK WHAT THESE DO
 .chartjs-tooltip {
-  white-space: pre-line; /* Ensures the newline character \n is respected */
+  white-space: pre-line; 
 }
-
-// TODO: Styling for date range selector, make list items wider and font size bigger
-// .ranges ul li {
-//   width: 350px;
-//   font-size: 18px;
-// }
-
-// .show-ranges {
-//   min-width: 350px;
-// }
-
-// .opensright {
-//   width: 350px;
-// }
 
 #reportrange {
   width: 350px;
@@ -213,19 +201,20 @@ html {
 }
 
 .chartjs-tooltip {
-  white-space: pre-line; /* Ensures the newline character \n is respected */
+  white-space: pre-line; 
 }
 
 #reportrange {
   width: 350px;
 }
-
+//////////////
 .carousel-item {
   height: 100%; 
 }
 /* 90s Pop Theme for Carousel Images */
 .carousel-item img {
-  height: 90%; 
+  margin-top: 5%;
+  min-height: 900px; 
   width: 90%; 
   border-radius: 50%;
   border: 14px dashed #ff00d4; 
@@ -239,6 +228,11 @@ html {
   text-shadow: 2px 2px 0 #FF69B4, -2px -2px 0 #30B0A3; 
   background: rgba(0, 0, 0, 0.5); 
   border-radius: 12px;  
+  z-index: 900;
+}
+
+.carousel-control-next-icon {
+  z-index: 2;
 }
 
 
@@ -297,6 +291,7 @@ html {
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
+  z-index: 3;
 }
 
 .card:before {

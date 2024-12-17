@@ -47,7 +47,7 @@ const homeBuilder = (user, artists, admin) => {
             ''
           }
     
-          <div class="carousel-caption d-none d-md-block">
+          <div class="carousel-caption d-none d-md-block" id ="detailForArtist">
             <h5>${artist.artistName}</h5>
             <p>${artist.artistDescription}</p>
             <p>${artist.performanceDate}</p>
