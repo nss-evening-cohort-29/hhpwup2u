@@ -1,12 +1,12 @@
 @import "~bootstrap/scss/bootstrap";
 
 html {
-  background-color: #ffcc00;
+  background-color: #b1b1b1;
 }
 
 #app {
   font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
-  background-color: #ffcc00;
+  background-color: #b1b1b1;
   text-align: center;
 }
 
@@ -25,7 +25,7 @@ html {
   right: 3%;
   bottom: 0;
   border: 40px solid transparent;
-  border-image: linear-gradient(135deg,#ffcc00,#ffd500, #00ffff,#ff00d4,#ffcc00,#ffcc00);
+  border-image: linear-gradient(135deg,#b1b1b1,#b1b1b1, #00ffff,#ff00d4,#ffcc00,#b1b1b1);
   border-image-slice: 1;
   transform: rotate(8deg); 
   z-index: 1;
@@ -110,7 +110,7 @@ html {
   background: linear-gradient(45deg, #010101, #1a3238,#1e3e46,#20454f);
   background-size: 400% 400%;
   animation: gradientShift 3s infinite ease-in-out;
-  border-bottom: 5px solid #ff00d4; 
+  border-bottom: 5px ridge rgb(255, 238, 1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
   z-index: 2;
 }
@@ -186,7 +186,7 @@ html {
 
 .login-btn:hover {
   opacity: 0.9;
-  background-color: #30b0a3;
+  background-color: #e11134;
   color: black;
   border: none;
 }
@@ -211,11 +211,11 @@ html {
 #reportrange {
   width: 350px;
 }
-//////////////
+////////////// Carousel-ITEM
 .carousel-item {
   height: 100%; 
 }
-/* 90s Pop Theme for Carousel Images */
+
 .carousel-item img {
   margin-top: 5%;
   min-height: 900px; 
@@ -250,7 +250,6 @@ html {
   margin-bottom: 10%;
   margin-left: 15%;
   margin-right: 15%;
-  background-color: #ffcc00; /* Bright yellow background */
   padding: 20px;
 }
 
@@ -270,47 +269,178 @@ html {
 }
 
 #submit-order:hover {
-  background-color: #e0d6b5;
-  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.2), 6px 6px 18px rgba(0, 0, 0, 0.3);
+  color: #000000; 
+  background: linear-gradient(45deg, rgb(0, 60, 255),#00ffd0ca, #f7f7f7, #fa04e6, yellow); 
+  border-radius: 12px; 
 }
+.btn btn-pri
 
 //Main container for cards
 #OrderCardsSection {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between; 
-  gap: 20px; 
-}
-
-.card {
-  flex: 1 1 calc(25% - 20px);
-  background-color: #fff; 
-  border: 2px dashed #d4c8b7; 
-  padding: 20px;
-  border-radius: 5px; 
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1); 
-  font-family: 'Courier New', Courier, monospace;
-  color: #333;
-  text-align: left; 
   position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  height: 100vh; 
 }
 
-.card:before {
-  content: ''; 
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 10px; 
-  background: linear-gradient(to right, #f7ae32f4, #3a3d3d);
+.card-body {
+  background-color: #0c0c0ce8; 
+}
+.card {
+  background: linear-gradient(45deg,rgb(0, 60, 255) ,#00ffd0ca, #f7f7f7, #fa04e6,yellow); 
+  width: calc(90%); 
+  height: 150px; 
+  left: 20px; 
+  color: #ffffff; 
+  padding-top: 2px;
+  transition: all 0.5s ease; 
+  transform: translateY(var(--stack-position, 90px)) scale(1.8); 
+  z-index: var(--stack-index, 2); 
 }
 
 .card:hover {
-  transform: scale(1.05); 
-  box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.2); 
+  transform: translateY(-90px) scale(1.4); 
+  color: #000000;  
+}
+.card-body:hover {
+  background: linear-gradient(45deg, rgb(0, 60, 255),#00ffd0ca, #f7f7f7, #fa04e6, yellow); 
+}
+
+.card-link:hover {
+  color: #FFD700; 
+  background-color: #000000; 
+  border-radius: 12px; 
+  transform: rotate(-3deg) scale(1.1);
+}
+.card-link {
+  color: #ffffff; 
+  text-transform: uppercase;
+  text-shadow: 3px 3px 0 #000; 
+  display: inline-block;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  background-color: transparent; 
+  border: none; 
+}
+
+#badgeOnOrder {
+  font-weight: bold;
+  color: #FFD700; 
+  display: inline-block; 
+  position: absolute; 
+  top: 20%; 
+  left: 20%; 
+  box-shadow: 0px 50px 60px rgba(0, 0, 0, 0.5); 
+  font-size: 1.3rem; 
+  border-radius: 0px !important;
+  border-right: 5px solid white;
+  margin-left: 5px;
+}
+
+
+/////////////// Menu Item Page
+
+#add-menu-btn {
+  font-weight: bold;
+  color: #FFD700; 
+  background-color: #000000; 
+  padding: 10px 20px; 
+  border-radius: 30px;
+  border: 4px dashed #5ad6c3; 
+  display: inline-block; 
+  transform: rotate(3deg);
+  top: 11%; 
+  left: 13%; 
+  z-index: 999;
+  box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.5); 
+  font-size: 1.3rem; 
+  margin-top: 4%;
+  margin-bottom: 4%;
+}
+
+#add-menu-btn:hover {
+  color: #FFD700; 
   background-color: #FF4500; 
-  color: #000000 ;
+  border-radius: 12px; 
+  transform: rotate(-3deg) scale(1.1);
+}
+
+#add-menu-btn:active {
+  transform: rotate(3deg) scale(0.95); /* Reverse tilt and slight shrink on click */
+}
+
+.menu-order-btn {
+  margin-top: 2%;
+  margin-left: 35px;
+  color: #FFD700; 
+  background-color: #FF4500; 
+  font-weight: bold;
+  border-radius: 12px; 
+  text-transform: uppercase;
+  text-shadow: 3px 3px 0 #000; 
+  padding: 15px 20px;
+  display: inline-block;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: none; 
+  transform: rotate(3deg) scale(1.4);
+}
+
+.menu-order-btn:hover {
+  color: #38ffde; 
+  background-color: #ff00c8; 
+  border-radius: 12px; 
+  transform: rotate(-3deg) scale(1.7);
+}
+
+.menu-order-btn:active {
+  transform: rotate(3deg) scale(0.95); /* Reverse tilt and slight shrink on click */
+}
+
+#menu-card-container-container {
+  display: flex;
+  flex-direction: row;
+  margin-left: 5%;
+  margin-right: 5%;
+  background: linear-gradient(45deg, #00ffff, #ff00d4);
+  background-size: 200% 200%;
+  animation: backgroundShift 6s ease infinite;
+  border-radius: 20px;
+  padding-top: 30px;
+}
+
+@keyframes backgroundShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.menu-card-img-top {
+  width: 350px;
+  height: 350px;
+  border-radius: 40%; /* Optional: Makes image circular */
+  margin-bottom: 10px;
+}
+.menu-card-container {
+  width:33%;
+}
+
+
+
+// REVENUE PAGE
+
+#revenue-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 10px;
+}
+
+#reportrange {
+  margin: 10px 0;
+  background: #fff;
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
 }
