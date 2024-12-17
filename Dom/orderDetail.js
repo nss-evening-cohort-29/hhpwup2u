@@ -1,7 +1,6 @@
 import clearDom from '../utils/clearDom';
 import renderToDOM from '../utils/renderToDom';
-
-/* eslint-disable indent, no-trailing-spaces, no-multiple-empty-lines */ 
+/* eslint-disable */
 const showItems = (array, firebaseKeyForOrder, orderStatus) => {
     clearDom();
     
@@ -21,8 +20,14 @@ const showItems = (array, firebaseKeyForOrder, orderStatus) => {
             <div class="item-card-body">
               <h5 class="card-title">${item.itemName}</h5>
               <h5 class="card-title">${item.itemPrice}</h5>
-              <button type="button" class="btn btn-dark" id="delete-item-btn__${item.firebaseKey}__${item.orderFirebaseKey}">Delete</button>
-              <button type="button" class="btn btn-dark" id="edit-item-btn__${item.firebaseKey}__${item.orderFirebaseKey}">Edit</button>
+              ${orderStatus === 'close' ? 
+                ''
+                : 
+                `
+                <button type="button" class="btn btn-dark" id="delete-item-btn__${item.firebaseKey}__${item.orderFirebaseKey}">Delete</button>
+                <button type="button" class="btn btn-dark" id="edit-item-btn__${item.firebaseKey}__${item.orderFirebaseKey}">Edit</button>
+                `
+                }
             </div>
         `;
       });

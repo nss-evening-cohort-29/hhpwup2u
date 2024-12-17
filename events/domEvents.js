@@ -8,8 +8,9 @@ import createOrderForm from "../Form/createOrderForm";
 import createItemForm from "../Form/createItemForm";
 import closeOrderForm from "../Form/closeOrderForm";
 import showOpenItemForMenu from "../Dom/menuOrderPage";
-import { getSingleMenuItem, getMenuItems } from "../api/apiMenu";
+import { getSingleMenuItem, getMenuItems, deleteMenuItem } from "../api/apiMenu";
 import showMenuItems from "../Dom/menu";
+import createMenuItemForm from "../Form/createMenuItemForm";
 
 const domEvents = (user, admin) => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
@@ -108,6 +109,25 @@ const domEvents = (user, admin) => {
 
     }
 
+    // ADD MENU ITEM
+    if (e.target.id.includes('add-menu-btn')) {
+      createMenuItemForm({});
+    }
+
+    //edit menu item
+    if (e.target.id.includes('edit-menu-btn')) {
+      const [, firebaseKey] = e.target.id.split('--');
+      getSingleMenuItem(firebaseKey).then((menuObj) => createMenuItemForm(menuObj))
+    }
+    
+    // DELETE MENU ITEM FORM
+    if (e.target.id.includes('delete-menu-btn')) {
+      const [, firebaseKey] = e.target.id.split('--');
+      deleteMenuItem(firebaseKey).then(() => {
+        getMenuItems().then((item) => showMenuItems(item, admin));
+      })
+    }
+
     // FOR ADDING ITEM FROM MENU ORDER
     if (e.target.id.includes('from-menu-add-order-btn')) {
 
@@ -131,6 +151,7 @@ const domEvents = (user, admin) => {
 
       })
     }
+
 
 
   });
