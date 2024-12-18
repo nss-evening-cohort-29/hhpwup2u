@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import { getOrders, deleteOrder, getSingleOrder, getAllOrders, searchOrders, getClosed } from "../api/apiOrders";
+import { getOrders, deleteOrder, getSingleOrder, getAllOrders, searchOrders, getClosed, getOpenOrders } from "../api/apiOrders";
 
 import showOrders from "../Dom/ordersPage";
 import showItems from "../Dom/orderDetail";

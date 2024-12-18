@@ -126,6 +126,21 @@ const editOrder = (payload) => new Promise((resolve, reject) => {
       .catch(reject);
   });
 
+  //GET OPEN ORDERS
+  const getOpenOrders = () => new Promise((resolve, reject) => {
+    fetch(`${endpoint}/Orders.json?orderBy="status"&equalTo="open"`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        const closed = Object.values(data)
+        resolve(closed);
+      })
+      .catch(reject);
+  });
     // SEARCH ORDER BY NAME, PHONE, & ORDER STATUS
 
     const searchOrders = (user, admin) => {
@@ -164,6 +179,6 @@ export {
     getClosed,
     getAllOrders,
     deleteOrderItemsRelationship,
-    searchOrders
-
+    searchOrders,
+    getOpenOrders
 }

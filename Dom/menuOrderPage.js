@@ -7,10 +7,10 @@ const showOpenItemForMenu = (array , MenuItemKey) => {
   clearDom();
 
   let domString = '';
-
+  domString += `<div class="iiiiiiii">`
   array.forEach((order) => {
     domString += `
-      <div class="card" style="width: 18rem;">
+      <div class="card" style="width: 18rem; margin-top: 35px;">
         <div class="card-body ">
           <h5 class="card-title">${order.orderName}</h5>
           <h6 class="card-subtitle mb-2 text-muted">${order.status === 'close' ? 'Closed' : 'Open'}</h6>
@@ -21,6 +21,7 @@ const showOpenItemForMenu = (array , MenuItemKey) => {
         </div>
       </div>`;
   });
+  domString +=`</div>`
   renderToDOM('#main-container', domString);
 };
 
