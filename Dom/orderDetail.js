@@ -8,8 +8,8 @@ const showItems = (array, firebaseKeyForOrder, orderStatus) => {
     array.forEach((item) => {
       totalPrice += parseFloat(item.itemPrice);
     });
-
-    let domstring = `
+    let domstring =`<div id="totalPriceSECTION" style="padding-top: 50px;">`
+     domstring += `
       <div class="text-4xl font-bold text-center my-4" id="totalPrice">
         <h1><b>Total: ${totalPrice}</b></h1>
       </div>
@@ -17,7 +17,7 @@ const showItems = (array, firebaseKeyForOrder, orderStatus) => {
 
     array.forEach((item) => { 
         domstring += `
-            <div class="item-card-body">
+            <div class="item-card-body" style="margin-top: 30px">
               <h5 class="card-title">${item.itemName}</h5>
               <h5 class="card-title">${item.itemPrice}</h5>
               ${orderStatus === 'close' ? 
@@ -33,17 +33,19 @@ const showItems = (array, firebaseKeyForOrder, orderStatus) => {
       });
 
     domstring += `
-        <div>
+        <div style= "margin-top: 40px;">
         ${orderStatus === 'close' ? '<span class="badge text-bg-danger">CLOSERD ORDER</span>' 
           : `
-          <button type="button" class="btn btn-success" id="add-item-btn--${firebaseKeyForOrder}">Add Custom Item</button>
-          <button type="button" class="btn btn-success" id="payment-order-btn--${firebaseKeyForOrder}--${totalPrice}">Go To Payment</button>
-          <button type="button" class="btn btn-success" id="Go-to-Menu-from-item-btn">MENU
+          <button type="button" class="new-new-btn" id="add-item-btn--${firebaseKeyForOrder}">Add Custom Item</button>
+          <button type="button" class="new-new-btn" id="payment-order-btn--${firebaseKeyForOrder}--${totalPrice}">Go To Payment</button>
+          <button type="button" class="new-new-btn" id="Go-to-Menu-from-item-btn">MENU
           </button>
           `
         }
         </div>
     `;
+
+    domstring += `</div>`
 
     renderToDOM('#main-container', domstring);
 };
