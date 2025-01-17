@@ -5,6 +5,10 @@ A Point-of-Sale (POS) System where a restaurant can keep track of their orders, 
 
 [View App](https://wangzandthangzup2u.netlify.app/)
 
+## Video Walkthrough of Hip Hop, Pizza, and Wangz (Team Up2U) <!-- A loom link is sufficient -->
+
+https://www.loom.com/share/c24d5e3e4e434662a536080b3c2499e6
+
 ## About the User <!-- This is a scaled down user persona -->
 - The ideal user for this application is a restaurant owner who needs a system to keep track of their business.
 
@@ -14,10 +18,6 @@ A Point-of-Sale (POS) System where a restaurant can keep track of their orders, 
 - Once menu items are added the user can log payment, select a payment method and add a tip amount. Adding these details will mark the order as closed.
 - Once an order is closed, it will be added to the revenue tab where the user can see revenue data over a certain time period.
 - On the home page, the user can use the artist booking system to book an artist at a venue in their local area.
-  
-
-## Video Walkthrough of Hip Hop, Pizza, and Wangz (Team Up2U) <!-- A loom link is sufficient -->
-
 
 ## Relevant Links <!-- Link to all the things that are required outside of the ones that have their own section -->
 - [Check out the deployed site](LINK)
