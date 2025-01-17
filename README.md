@@ -3,7 +3,7 @@
 
 A Point-of-Sale (POS) System where a restaurant can keep track of their orders, menu items, and revenue all in one convenient place.
 
-[View App]([LINK](https://wangzandthangzup2u.netlify.app/))
+[View App](https://wangzandthangzup2u.netlify.app/)
 
 ## About the User <!-- This is a scaled down user persona -->
 - The ideal user for this application is a restaurant owner who needs a system to keep track of their business.
