@@ -1,9 +1,9 @@
-# Hip Hop, Pizza, and Wangz (Team Up2U)  [![Netlify Status](https://api.netlify.com/api/v1/badges/882acd35-2dfc-4369-abed-32f6eb643375/deploy-status)](https://app.netlify.com/sites/stunning-cupcake-ad077a/deploys)
+# Hip Hop, Pizza, and Wangz (Team Up2U)
 <!-- update the netlify badge above with your own badge that you can find at netlify under settings/general#status-badges -->
 
 A Point-of-Sale (POS) System where a restaurant can keep track of their orders, menu items, and revenue all in one convenient place.
 
-[View App](LINK)
+[View App]([LINK](https://wangzandthangzup2u.netlify.app/))
 
 ## About the User <!-- This is a scaled down user persona -->
 - The ideal user for this application is a restaurant owner who needs a system to keep track of their business.
